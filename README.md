@@ -8,4 +8,4 @@
 - `main` Rama principal que nomas se utilizara para cuando la actualizacion no tenga fallos
 - `develop` Rama en la cual se trabajara casi siempre, todos usamos esta rama para evitar incopatibilidades a la larga
 
-## Rama actual: <code style="color: aqua">develop</code>
+## Rama actual: <code style="color: red">main</code>
