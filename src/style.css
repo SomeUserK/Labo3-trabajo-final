@@ -1,22 +1,36 @@
-:root{
-  --amarillo: #FFD700;
+:root {
+  --amarillo: #ffd700;
   --negro: #000000;
+
+  --oscuro: #0c1e3e;
+  --azul: #122c5a;
+  --turquesa: #38fbdb;
+  --rosa: #fc0ff5;
+  --violeta: #8e52f5;
+
+  --azulOSCURO: #23234b;
+  --azulMarino: #292a50;
+  --cian: #06cfce;
+  --rojo: #d3167c;
+  --blanco: #ececed;
+  --cianOscuro: #0b959f;
+  --celesteOscuro: #285877;
+  --azulOtraVez: #241a44;
+  --vino: #8d155e;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #0f0f0f;
-
 }
 
-.contenedor{
+.contenedor {
   width: 60vw;
   height: 100vh;
   padding: 0 10vw;
@@ -25,20 +39,20 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
-.logo{
+.logo {
   display: inline-block;
   position: relative;
 }
-.logo::before{
-  content: "Welcome";
+.logo::before {
+  content: 'Welcome';
   color: var(--amarillo);
 }
-ul li{
+ul li {
   position: relative;
   cursor: pointer;
 }
-ul li::after{
-  content: "";
+ul li::after {
+  content: '';
   display: block;
   position: absolute;
   height: 100%;
