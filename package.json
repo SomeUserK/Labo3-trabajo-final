@@ -10,5 +10,9 @@
   },
   "devDependencies": {
     "vite": "^5.2.0"
-  }
+  },
+  "description": "> Para descargar, podes darle a CODE y descargar repostorio",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }
