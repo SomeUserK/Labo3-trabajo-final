@@ -1,0 +1,75 @@
+:root{
+  --AzulOSCURO: #23234B;
+  --AzulMarino: #292A50;
+  --Cian: #06CFCE;
+  --Rojo: #D3167C;
+  --Blanco: #ECECED;
+  --CianOscuro: #0B959F;
+  --CelesteOscuro: #285877;
+  --AzulOtraVez: #241A44;
+  --Vino: #8D155E;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+body {
+  background: linear-gradient(45deg, #090a10 40%, #161b24);
+}
+
+/*Logo*/
+.logo{
+  display: inline-block;
+  position: relative;
+  font-family: "Pixelify Sans", sans-serif;
+}
+.logo span{
+  position: relative;
+}
+.logo::after{
+  content: "For everyone";
+  font-size: .8rem;
+  position: absolute;
+  color: var(--Cian);
+  top: 66%;
+  left: 33%;
+}
+.logo span::after{
+  content: "Games";
+  position: absolute;
+  color: var(--CianOscuro);
+  top: -8%;
+  left: 1%;
+  z-index: -2;
+}
+.logo span::before{
+  content: "Games";
+  position: absolute;
+  color: var(--Rojo);
+  bottom: -15%;
+  right: 1%;
+  z-index: -1;
+}
+
+/*Fin Logo*/
+
+/*Navbar*/
+.dark-mode{
+  background: linear-gradient(45deg, 
+  #090a10 40%, #161b24);
+}
+.light-mode{
+  background: var(--Blanco);
+}
+
+.navbar{
+  border-bottom: 1px solid var(--Cian);
+}
+.navbar-brand span{
+  position: relative;
+}
+/*Fin Navbar*/
