@@ -36,7 +36,6 @@
 }
 
 .d-flex {
-  background-color: var(--Vino);
   color: black;
 }
 .btn-outline-success {
@@ -45,7 +44,6 @@
 }
 
 .form-control {
-  background-color: var(--Vino);
   color: black;
   border: solid 1px black;
 }
