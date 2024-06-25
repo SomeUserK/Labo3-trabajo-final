@@ -17,14 +17,23 @@
 
 /*tarjetas*/
 .card {
-  background-color: var(--AzulMarino);
-  color: var(--Blanco);
+  background-color: white;
+  color: black;
   margin: 15px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .btn-primary {
+  background-color: white;
+  border: solid 1px black;
+  color: black;
+}
+/*tarjetas en modo negroooo!*/
+.dark-mode .card {
+  background-color: var(--AzulMarino);
+  color: var(--Blanco);
+}
+.dark-mode .btn-primary {
   background-color: var(--AzulOtraVez);
-
   border: solid 1px var(--CelesteOscuro);
 }
