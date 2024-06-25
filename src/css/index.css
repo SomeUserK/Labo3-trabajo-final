@@ -1,55 +1,55 @@
-:root{
-    --AzulOSCURO: #23234B;
-    --AzulMarino: #292A50;
-    --Cian: #06CFCE;
-    --Rojo: #D3167C;
-    --Blanco: #ECECED;
-    --CianOscuro: #0B959F;
-    --CelesteOscuro: #285877;
-    --AzulOtraVez: #241A44;
-    --Vino: #8D155E;
-  }
-.contenedor{
-    width: 60vw;
-    height: 100vh;
-    padding: 0 10vw;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+:root {
+  --AzulOSCURO: #23234b;
+  --AzulMarino: #292a50;
+  --Cian: #06cfce;
+  --Rojo: #d3167c;
+  --Blanco: #ececed;
+  --CianOscuro: #0b959f;
+  --CelesteOscuro: #285877;
+  --AzulOtraVez: #241a44;
+  --Vino: #8d155e;
+}
+.contenedor {
+  width: 60vw;
+  height: 100vh;
+  padding: 0 10vw;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
 /*Logo*/
-.logo{
-    color: var(--Blanco);
+.logo {
+  color: var(--Blanco);
 }
-.logo::after{
+.logo::after {
   font-size: 1.3rem;
   top: 60%;
   left: 42.5%;
 }
-.logo a:hover{
+.logo a:hover {
   filter: brightness(0.9);
 }
 /*Footer Index*/
-ul li{
-    position: relative;
-    cursor: pointer;
+ul li {
+  position: relative;
+  cursor: pointer;
 }
-ul li::after{
-content: "";
-display: block;
-position: absolute;
-height: 100%;
-width: 150%;
-border: var(--negro) 3px solid;
-border-radius: 10px;
-top: 0;
-left: -25%;
+ul li::after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 150%;
+  border: var(--negro) 3px solid;
+  border-radius: 10px;
+  top: 0;
+  left: -25%;
 }
 /*Fin Footer Index*/
-@media screen and (max-width:700px){
-.contenedor{
+@media screen and (max-width: 700px) {
+  .contenedor {
     width: 100%;
-}
+  }
 }

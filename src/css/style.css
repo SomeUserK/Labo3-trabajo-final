@@ -1,20 +1,19 @@
-:root{
-  --AzulOSCURO: #23234B;
-  --AzulMarino: #292A50;
-  --Cian: #06CFCE;
-  --Rojo: #D3167C;
-  --Blanco: #ECECED;
-  --CianOscuro: #0B959F;
+:root {
+  --AzulOSCURO: #23234b;
+  --AzulMarino: #292a50;
+  --Cian: #06cfce;
+  --Rojo: #d3167c;
+  --Blanco: #ececed;
+  --CianOscuro: #0b959f;
   --CelesteOscuro: #285877;
-  --AzulOtraVez: #241A44;
-  --Vino: #8D155E;
+  --AzulOtraVez: #241a44;
+  --Vino: #8d155e;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
 
 body {
@@ -22,32 +21,32 @@ body {
 }
 
 /*Logo*/
-.logo{
+.logo {
   display: inline-block;
   position: relative;
-  font-family: "Pixelify Sans", sans-serif;
+  font-family: 'Pixelify Sans', sans-serif;
 }
-.logo span{
+.logo span {
   position: relative;
 }
-.logo::after{
-  content: "For everyone";
-  font-size: .8rem;
+.logo::after {
+  content: 'For everyone';
+  font-size: 0.8rem;
   position: absolute;
   color: var(--Cian);
   top: 66%;
   left: 33%;
 }
-.logo span::after{
-  content: "Games";
+.logo span::after {
+  content: 'Games';
   position: absolute;
   color: var(--CianOscuro);
   top: -8%;
   left: 1%;
   z-index: -2;
 }
-.logo span::before{
-  content: "Games";
+.logo span::before {
+  content: 'Games';
   position: absolute;
   color: var(--Rojo);
   bottom: -15%;
@@ -58,18 +57,17 @@ body {
 /*Fin Logo*/
 
 /*Navbar*/
-.dark-mode{
-  background: linear-gradient(45deg, 
-  #090a10 40%, #161b24);
+.dark-mode {
+  background: linear-gradient(45deg, #090a10 40%, #161b24);
 }
-.light-mode{
+.light-mode {
   background: var(--Blanco);
 }
 
-.navbar{
+.navbar {
   border-bottom: 1px solid var(--Cian);
 }
-.navbar-brand span{
+.navbar-brand span {
   position: relative;
 }
 /*Fin Navbar*/

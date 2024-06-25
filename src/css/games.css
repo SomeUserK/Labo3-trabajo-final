@@ -1,31 +1,30 @@
-:root{
-    --AzulOSCURO: #23234B;
-    --AzulMarino: #292A50;
-    --Cian: #06CFCE;
-    --Rojo: #D3167C;
-    --Blanco: #ECECED;
-    --CianOscuro: #0B959F;
-    --CelesteOscuro: #285877;
-    --AzulOtraVez: #241A44;
-    --Vino: #8D155E;
-  }
+:root {
+  --AzulOSCURO: #23234b;
+  --AzulMarino: #292a50;
+  --Cian: #06cfce;
+  --Rojo: #d3167c;
+  --Blanco: #ececed;
+  --CianOscuro: #0b959f;
+  --CelesteOscuro: #285877;
+  --AzulOtraVez: #241a44;
+  --Vino: #8d155e;
+}
 
 /*logo*/
-.logo:hover{
-    filter: brightness(0.9);
+.logo:hover {
+  filter: brightness(0.9);
 }
 
 /*tarjetas*/
-.card{
-    background-color: var(--AzulMarino);
-    color: var(--Blanco);
-    margin: 15px;
-    font-family: Arial, Helvetica, sans-serif;
-    
-  }
+.card {
+  background-color: var(--AzulMarino);
+  color: var(--Blanco);
+  margin: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-  .btn-primary{
-background-color: var(--AzulOtraVez);
+.btn-primary {
+  background-color: var(--AzulOtraVez);
 
-border: solid 1px var(--CelesteOscuro);
-  }
+  border: solid 1px var(--CelesteOscuro);
+}
