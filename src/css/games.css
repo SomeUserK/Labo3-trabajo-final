@@ -16,8 +16,9 @@
 }
 
 /*tarjetas*/
+/*tarjetas en modo blancoo!*/
 .card {
-  background-color: white;
+  background-color: var(--Cian);
   color: black;
   margin: 20px;
   font-family: Arial, Helvetica, sans-serif;
@@ -29,10 +30,27 @@
 }
 
 .btn-primary {
-  background-color: white;
+  background-color: var(--CianOscuro);
   border: solid 1px black;
   color: black;
 }
+
+.d-flex {
+  background-color: var(--Vino);
+  color: black;
+}
+.btn-outline-success {
+  color: black;
+  border: solid 1px black;
+}
+
+.form-control {
+  background-color: var(--Vino);
+  color: black;
+  border: solid 1px black;
+}
+/*termino el modo blancooo!*/
+
 /*tarjetas en modo negroooo!*/
 .dark-mode .card {
   background-color: var(--AzulMarino);
@@ -42,3 +60,21 @@
   background-color: var(--AzulOtraVez);
   border: solid 1px var(--CelesteOscuro);
 }
+
+.dark-mode .d-flex {
+  background-color: var(--AzulOtraVez);
+}
+
+.dark-mode .btn-outline-success {
+  color: var(--Blanco);
+  border: solid 1px var(--CelesteOscuro);
+  background-color: var(--AzulOtraVez);
+}
+
+.dark-mode .form-control {
+  background-color: var(--AzulOtraVez);
+  color: var(--Blanco);
+  border: solid 1px var(--CelesteOscuro);
+}
+
+/*termino el modo negroooo!*/
