@@ -1,491 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Juego Para Todos</title>
-    <link
-      rel="shortcut icon"
-      href="public/imagenes/favicon.png"
-      type="image/x-icon"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
-    <link rel="stylesheet" href="/src/css/style.css" />
-    <link rel="stylesheet" href="/src/css/games.css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juego Para Todos</title>
+  <link rel="shortcut icon" href="public/imagenes/favicon.png" type="image/x-icon" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="/src/css/style.css" />
+  <link rel="stylesheet" href="/src/css/games.css" />
 
-  <body class="dark-mode">
-    <nav class="navbar navbar-expand-lg bg-transparent" data-bs-theme="dark">
-      <div class="container-sm">
-        <a class="navbar-brand logo" href="./index.html">
-          <img
-            src="public/svg/control.svg"
-            alt="logo"
-            style="height: 2.3rem; width: 2.3rem"
-          />
-          <span class="text-uppercase fs-3">Games</span>
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarScroll"
-          aria-controls="navbarScroll"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet" />
+</head>
 
-        <div class="collapse navbar-collapse" id="navbarScroll">
-          <ul class="navbar-nav me-auto ms-md-3 mb-2 mb-lg-0">
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <i class="bi bi-eye"></i>
-                <i class="bi bi-toggle-off"></i>
-              </a>
-              <ul class="dropdown-menu">
-                <!--Togle para cambiar modo -->
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="#"
-                    role="button"
-                    type="button"
-                    id="toggleMode"
-                    >Light Mode</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <!-- Nuevo Botón de Géneros con Checkboxes -->
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdownGenres"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Géneros
-              </a>
-              <ul
-                class="dropdown-menu p-3 no-propagation"
-                aria-labelledby="navbarDropdownGenres"
-              >
-                <li>
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="action"
-                    />
-                    <label class="form-check-label" for="action">Acción</label>
-                  </div>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="adventure"
-                    />
-                    <label class="form-check-label" for="adventure"
-                      >Aventura</label
-                    >
-                  </div>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="sports"
-                    />
-                    <label class="form-check-label" for="sports"
-                      >Deportes</label
-                    >
-                  </div>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="strategy"
-                    />
-                    <label class="form-check-label" for="strategy"
-                      >Estrategia</label
-                    >
-                  </div>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="simulation"
-                    />
-                    <label class="form-check-label" for="simulation"
-                      >Simulación</label
-                    >
-                  </div>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="rpg"
-                    />
-                    <label class="form-check-label" for="rpg">RPG</label>
-                  </div>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="puzzle"
-                    />
-                    <label class="form-check-label" for="puzzle">Puzzle</label>
-                  </div>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="horror"
-                    />
-                    <label class="form-check-label" for="horror">Horror</label>
-                  </div>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="racing"
-                    />
-                    <label class="form-check-label" for="racing"
-                      >Carreras</label
-                    >
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <form class="d-flex" role="search">
-            <!--Barra busqueda Id = barraBusqueda-->
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search for a game"
-              aria-label="Search"
-              id="barraBusqueda"
-            />
-            <!--Boton busqueda Id = botonBusqueda-->
-            <button
-              class="btn btn-outline-success"
-              type="submit"
-              id="botonBusqueda"
-            >
-              Search
-            </button>
-          </form>
-        </div>
+<body class="dark-mode">
+  <nav class="navbar navbar-expand-lg bg-transparent" data-bs-theme="dark">
+    <div class="container-sm">
+      <a class="navbar-brand logo" href="./index.html">
+        <img src="public/svg/control.svg" alt="logo" style="height: 2.3rem; width: 2.3rem" />
+        <span class="text-uppercase fs-3">Games</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+        aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto ms-md-3 mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-eye"></i>
+              <i class="bi bi-toggle-off"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <!--Togle para cambiar modo -->
+              <li>
+                <a class="dropdown-item" href="#" role="button" type="button" id="toggleMode">Light Mode</a>
+              </li>
+            </ul>
+          </li>
+          <!-- Nuevo Botón de Géneros con Checkboxes -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownGenres" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Géneros
+            </a>
+            <ul class="dropdown-menu p-3 no-propagation" aria-labelledby="navbarDropdownGenres">
+              <li>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="action" />
+                  <label class="form-check-label" for="action">Acción</label>
+                </div>
+              </li>
+              <li>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="adventure" />
+                  <label class="form-check-label" for="adventure">Aventura</label>
+                </div>
+              </li>
+              <li>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="sports" />
+                  <label class="form-check-label" for="sports">Deportes</label>
+                </div>
+              </li>
+              <li>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="strategy" />
+                  <label class="form-check-label" for="strategy">Estrategia</label>
+                </div>
+              </li>
+              <li>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="simulation" />
+                  <label class="form-check-label" for="simulation">Simulación</label>
+                </div>
+              </li>
+              <li>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="rpg" />
+                  <label class="form-check-label" for="rpg">RPG</label>
+                </div>
+              </li>
+              <li>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="puzzle" />
+                  <label class="form-check-label" for="puzzle">Puzzle</label>
+                </div>
+              </li>
+              <li>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="horror" />
+                  <label class="form-check-label" for="horror">Horror</label>
+                </div>
+              </li>
+              <li>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="racing" />
+                  <label class="form-check-label" for="racing">Carreras</label>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <!--Barra busqueda Id = barraBusqueda-->
+          <input class="form-control me-2" type="search" placeholder="Search for a game" aria-label="Search"
+            id="barraBusqueda" />
+          <!--Boton busqueda Id = botonBusqueda-->
+          <button class="btn btn-outline-success" type="submit" id="botonBusqueda">
+            Search
+          </button>
+        </form>
       </div>
-    </nav>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
+    </div>
+  </nav>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+  </script>
 
-    <!-- tarjeta re sarpadas -->
+  <!-- tarjeta re sarpadas -->
 
-    <div class="row row-cols-1 row-cols-md-4">
-      <div class="col">
-        <div class="card" data-bs-theme="dark">
-          <img
-            src="./public/imagenes/cultofthelamb.jfif"
-            class="card-img-top"
-            alt="imagen del juego"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Cult of the Lamb</h5>
-            <p class="card-text">
-              nose si vamos a poner esto o solo ponemos el nombre
-            </p>
-            <img
-              src="public/imagenes/steam.png"
-              class="img-chiquita"
-              alt="muestre que se puede jugar en steam"
-              width="20"
-            />
-            <img
-              src="public/imagenes/playstation-logotype.png"
-              class="img-chiquita"
-              alt="muestre que se puede jugar en playstation"
-              width="20"
-            />
-            <img
-              src="public/imagenes/xbox-logo.png"
-              class="img-chiquita"
-              alt="muestre que se puede jugar en xbox"
-              width="20"
-            />
-            <img
-              src="public/imagenes/play-store.png"
-              class="img-chiquita"
-              alt="muestre que se puede jugar en playstore"
-              width="20"
-            />
-            <a href="#" class="btn btn-primary">ver mas</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card">
-          <img
-            src="./public/imagenes/cultofthelamb.jfif"
-            class="card-img-top"
-            alt="imagen del juego"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Cult of the Lamb</h5>
-            <p class="card-text">
-              nose si vamos a poner esto o solo ponemos el nombre
-            </p>
-            <img
-              src="public/imagenes/steam.png"
-              class="img-chiquita"
-              alt="muestre en que plataforma se puede jugar"
-              width="20"
-            />
-            <img
-              src="public/imagenes/playstation-logotype.png"
-              class="img-chiquita"
-              alt="muestre en que plataforma se puede jugar"
-              width="20"
-            />
-            <img
-              src="public/imagenes/xbox-logo.png"
-              class="img-chiquita"
-              alt="muestre en que plataforma se puede jugar"
-              width="20"
-            />
-            <img
-              src="public/imagenes/play-store.png"
-              class="img-chiquita"
-              alt="muestre en que plataforma se puede jugar"
-              width="20"
-            />
-            <a href="#" class="btn btn-primary">ver mas</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card">
-          <img
-            src="./public/imagenes/cultofthelamb.jfif"
-            class="card-img-top"
-            alt="imagen del juego"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Cult of the Lamb</h5>
-            <p class="card-text">
-              nose si vamos a poner esto o solo ponemos el nombre
-            </p>
-            <img
-              src="public/imagenes/steam.png"
-              class="img-chiquita"
-              alt="muestre en que plataforma se puede jugar"
-              width="20"
-            />
-            <img
-              src="public/imagenes/playstation-logotype.png"
-              class="img-chiquita"
-              alt="muestre en que plataforma se puede jugar"
-              width="20"
-            />
-            <img
-              src="public/imagenes/xbox-logo.png"
-              class="img-chiquita"
-              alt="muestre en que plataforma se puede jugar"
-              width="20"
-            />
-            <img
-              src="public/imagenes/play-store.png"
-              class="img-chiquita"
-              alt="muestre en que plataforma se puede jugar"
-              width="20"
-            />
-            <a href="#" class="btn btn-primary">ver mas</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card">
-          <img
-            src="./public/imagenes/cultofthelamb.jfif"
-            class="card-img-top"
-            alt="imagen del juego"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Cult of the Lamb</h5>
-            <p class="card-text">
-              Cult of the Lamb es un juego de acción y aventuras y de mazmorras
-            </p>
-            <img
-              src="public/imagenes/steam.png"
-              class="img-chiquita"
-              alt="muestre en que plataforma se puede jugar"
-              width="20"
-            />
-            <img
-              src="public/imagenes/playstation-logotype.png"
-              class="img-chiquita"
-              alt="muestre en que plataforma se puede jugar"
-              width="20"
-            />
-            <img
-              src="public/imagenes/xbox-logo.png"
-              class="img-chiquita"
-              alt="muestre en que plataforma se puede jugar"
-              width="20"
-            />
-            <img
-              src="public/imagenes/play-store.png"
-              class="img-chiquita"
-              alt="muestre en que plataforma se puede jugar"
-              width="20"
-            />
-            <a href="#" class="btn btn-primary">ver mas</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card">
-          <img
-            src="./public/imagenes/cultofthelamb.jfif"
-            class="card-img-top"
-            alt="imagen del juego"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Cult of the Lamb</h5>
-            <p class="card-text">
-              Cult of the Lamb es un juego de acción y aventuras y de mazmorras
-            </p>
-            <img
-              src="public/imagenes/steam.png"
-              class="img-chiquita"
-              alt="muestre en que plataforma se puede jugar"
-              width="20"
-            />
-            <img
-              src="public/imagenes/playstation-logotype.png"
-              class="img-chiquita"
-              alt="muestre en que plataforma se puede jugar"
-              width="20"
-            />
-            <img
-              src="public/imagenes/xbox-logo.png"
-              class="img-chiquita"
-              alt="muestre en que plataforma se puede jugar"
-              width="20"
-            />
-            <img
-              src="public/imagenes/play-store.png"
-              class="img-chiquita"
-              alt="muestre en que plataforma se puede jugar"
-              width="20"
-            />
-            <a href="#" class="btn btn-primary">ver mas</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card">
-          <img
-            src="./public/imagenes/cultofthelamb.jfif"
-            class="card-img-top"
-            alt="imagen del juego"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Cult of the Lamb</h5>
-            <p class="card-text">
-              Cult of the Lamb es un juego de acción y aventuras y de mazmorras
-            </p>
-            <img
-              src="public/imagenes/steam.png"
-              class="img-chiquita"
-              alt="muestre en que plataforma se puede jugar"
-              width="20"
-            />
-            <img
-              src="public/imagenes/playstation-logotype.png"
-              class="img-chiquita"
-              alt="muestre en que plataforma se puede jugar"
-              width="20"
-            />
-            <img
-              src="public/imagenes/xbox-logo.png"
-              class="img-chiquita"
-              alt="muestre en que plataforma se puede jugar"
-              width="20"
-            />
-            <img
-              src="public/imagenes/play-store.png"
-              class="img-chiquita"
-              alt="muestre en que plataforma se puede jugar"
-              width="20"
-            />
-            <a href="#" class="btn btn-primary">ver mas</a>
-          </div>
+  <div class="row row-cols-1 row-cols-md-4">
+    <div class="col">
+      <div class="card" data-bs-theme="dark">
+        <img src="./public/imagenes/cultofthelamb.jfif" class="card-img-top" alt="imagen del juego" />
+        <div class="card-body">
+          <h5 class="card-title">Cult of the Lamb</h5>
+          <p class="card-text">
+            nose si vamos a poner esto o solo ponemos el nombre
+          </p>
+          <img src="public/imagenes/steam.png" class="img-chiquita" alt="muestre que se puede jugar en steam"
+            width="20" />
+          <img src="public/imagenes/playstation-logotype.png" class="img-chiquita"
+            alt="muestre que se puede jugar en playstation" width="20" />
+          <img src="public/imagenes/xbox-logo.png" class="img-chiquita" alt="muestre que se puede jugar en xbox"
+            width="20" />
+          <img src="public/imagenes/play-store.png" class="img-chiquita" alt="muestre que se puede jugar en playstore"
+            width="20" />
+          <a href="#" class="btn btn-primary">ver mas</a>
         </div>
       </div>
     </div>
 
-    <script type="module" src="/src/js/games.js"></script>
-    <script type="module" src="/src/js/all.js"></script>
-  </body>
+    <div class="col">
+      <div class="card">
+        <img src="./public/imagenes/cultofthelamb.jfif" class="card-img-top" alt="imagen del juego" />
+        <div class="card-body">
+          <h5 class="card-title">Cult of the Lamb</h5>
+          <p class="card-text">
+            nose si vamos a poner esto o solo ponemos el nombre
+          </p>
+          <img src="public/imagenes/steam.png" class="img-chiquita" alt="muestre en que plataforma se puede jugar"
+            width="20" />
+          <img src="public/imagenes/playstation-logotype.png" class="img-chiquita"
+            alt="muestre en que plataforma se puede jugar" width="20" />
+          <img src="public/imagenes/xbox-logo.png" class="img-chiquita" alt="muestre en que plataforma se puede jugar"
+            width="20" />
+          <img src="public/imagenes/play-store.png" class="img-chiquita" alt="muestre en que plataforma se puede jugar"
+            width="20" />
+          <a href="#" class="btn btn-primary">ver mas</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <img src="./public/imagenes/cultofthelamb.jfif" class="card-img-top" alt="imagen del juego" />
+        <div class="card-body">
+          <h5 class="card-title">Cult of the Lamb</h5>
+          <p class="card-text">
+            nose si vamos a poner esto o solo ponemos el nombre
+          </p>
+          <img src="public/imagenes/steam.png" class="img-chiquita" alt="muestre en que plataforma se puede jugar"
+            width="20" />
+          <img src="public/imagenes/playstation-logotype.png" class="img-chiquita"
+            alt="muestre en que plataforma se puede jugar" width="20" />
+          <img src="public/imagenes/xbox-logo.png" class="img-chiquita" alt="muestre en que plataforma se puede jugar"
+            width="20" />
+          <img src="public/imagenes/play-store.png" class="img-chiquita" alt="muestre en que plataforma se puede jugar"
+            width="20" />
+          <a href="#" class="btn btn-primary">ver mas</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <img src="./public/imagenes/cultofthelamb.jfif" class="card-img-top" alt="imagen del juego" />
+        <div class="card-body">
+          <h5 class="card-title">Cult of the Lamb</h5>
+          <p class="card-text">
+            Cult of the Lamb es un juego de acción y aventuras y de mazmorras
+          </p>
+          <img src="public/imagenes/steam.png" class="img-chiquita" alt="muestre en que plataforma se puede jugar"
+            width="20" />
+          <img src="public/imagenes/playstation-logotype.png" class="img-chiquita"
+            alt="muestre en que plataforma se puede jugar" width="20" />
+          <img src="public/imagenes/xbox-logo.png" class="img-chiquita" alt="muestre en que plataforma se puede jugar"
+            width="20" />
+          <img src="public/imagenes/play-store.png" class="img-chiquita" alt="muestre en que plataforma se puede jugar"
+            width="20" />
+          <a href="#" class="btn btn-primary">ver mas</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <img src="./public/imagenes/cultofthelamb.jfif" class="card-img-top" alt="imagen del juego" />
+        <div class="card-body">
+          <h5 class="card-title">Cult of the Lamb</h5>
+          <p class="card-text">
+            Cult of the Lamb es un juego de acción y aventuras y de mazmorras
+          </p>
+          <img src="public/imagenes/steam.png" class="img-chiquita" alt="muestre en que plataforma se puede jugar"
+            width="20" />
+          <img src="public/imagenes/playstation-logotype.png" class="img-chiquita"
+            alt="muestre en que plataforma se puede jugar" width="20" />
+          <img src="public/imagenes/xbox-logo.png" class="img-chiquita" alt="muestre en que plataforma se puede jugar"
+            width="20" />
+          <img src="public/imagenes/play-store.png" class="img-chiquita" alt="muestre en que plataforma se puede jugar"
+            width="20" />
+          <a href="#" class="btn btn-primary">ver mas</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <img src="./public/imagenes/cultofthelamb.jfif" class="card-img-top" alt="imagen del juego" />
+        <div class="card-body">
+          <h5 class="card-title">Cult of the Lamb</h5>
+          <p class="card-text">
+            Cult of the Lamb es un juego de acción y aventuras y de mazmorras
+          </p>
+          <img src="public/imagenes/steam.png" class="img-chiquita" alt="muestre en que plataforma se puede jugar"
+            width="20" />
+          <img src="public/imagenes/playstation-logotype.png" class="img-chiquita"
+            alt="muestre en que plataforma se puede jugar" width="20" />
+          <img src="public/imagenes/xbox-logo.png" class="img-chiquita" alt="muestre en que plataforma se puede jugar"
+            width="20" />
+          <img src="public/imagenes/play-store.png" class="img-chiquita" alt="muestre en que plataforma se puede jugar"
+            width="20" />
+          <a href="#" class="btn btn-primary">ver mas</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="d-flex flex-wrap flex-column justify-content-center align-items-center py-3 my-4 border-top">
+    <div class="d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24">
+          <use xlink:href="#bootstrap"></use>
+        </svg>
+      </a>
+      <span class="text-light">© 2024 Raspando Aprobados, Labo 3 UTN</span>
+    </div>
+
+    <ul class="nav justify-content-center list-unstyled d-flex">
+      <li class="me-3">
+        <a class="text-decoration-none"  target="_blank" href="https://github.com/Shinon4598"><i class="bi bi-github pe-1 fs-4"></i><span>Melina Sanchez</span></a>
+      </li>
+      <li class="me-3">
+        <a class="text-decoration-none"  target="_blank" href="https://github.com/EnzoCongregadoRial2002"><i class="bi bi-github pe-1 fs-4"></i> <span>Enzo Congregado</span></a>
+      </li>
+      <li class="me-3">
+        <a class="text-decoration-none"  target="_blank" href="https://github.com/Justina510"><i class="bi bi-github pe-1 fs-4"></i> <span>Justina Aldana</span></a>
+      </li>
+      <li class="me-3">
+        <a class="text-decoration-none"  target="_blank" href="https://github.com/tomas-lozano-frsn"><i class="bi bi-github pe-1 fs-4"></i> <span>Tomas Lozano</span></a>
+      </li>
+      <li class="me-3">
+        <a class="text-decoration-none"  target="_blank" href="https://discord.gg/KMr3mWBv"><i class="bi bi-github pe-1 fs-4"></i> <span>Benjamin Gorski</span></a>
+      </li>
+      <li class="me-3">
+        <a class="text-decoration-none" target="_blank" href="https://github.com/SomeUserK"><i class="bi bi-github pe-1 fs-4"></i> <span>Kevin Arroyo</span></a>
+      </li>
+    </ul>
+  </footer>
+
+  <script type="module" src="/src/js/games.js"></script>
+  <script type="module" src="/src/js/all.js"></script>
+</body>
+
 </html>

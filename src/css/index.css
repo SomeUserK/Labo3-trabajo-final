@@ -31,23 +31,6 @@
 .logo a:hover {
   filter: brightness(0.9);
 }
-/*Footer Index*/
-ul li {
-  position: relative;
-  cursor: pointer;
-}
-ul li::after {
-  content: '';
-  display: block;
-  position: absolute;
-  height: 100%;
-  width: 150%;
-  border: var(--negro) 3px solid;
-  border-radius: 10px;
-  top: 0;
-  left: -25%;
-}
-/*Fin Footer Index*/
 @media screen and (max-width: 700px) {
   .contenedor {
     width: 100%;
