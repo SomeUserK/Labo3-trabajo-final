@@ -19,7 +19,7 @@
 .card {
   background-color: white;
   color: black;
-  margin: 15px;
+  margin: 20px;
   font-family: Arial, Helvetica, sans-serif;
   transition: transform 0.3s ease;
 }
