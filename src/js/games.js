@@ -97,11 +97,11 @@ async function loadHTMLAsString(url) {
           if (!game) return '';
           const gameData = extraDatas[index] || {};
 
-          const words = gameData.description?.split(' ') || [];
+          const words = gameData.description_raw?.split(' ') || [];
 
           return HTMLreplacer(cardTemplate, {
             name: game.name,
-            description: words.slice(0, 30).join(' ') + '...',
+            description: words.slice(0, 36).join(' ') + '...',
             rating: game.rating,
             image: game.background_image,
           });
