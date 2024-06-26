@@ -1,28 +1,31 @@
-//Toggle Navbar
-const body = document.querySelector('body');
-const darkDropdown = document.querySelector('[data-bs-theme="dark"]');
-const buttonToggle = document.querySelector('#toggleMode');
-const toggleIcon = document.querySelector('.bi-toggle-off');
-const eyeIcon = document.querySelector('.bi-eye');
+const { VITE_SECRET_KEY: apiKey } = import.meta.env;
 
-buttonToggle.addEventListener('click', () => {
-  //Cambia la clase para cambiar el tema del body
-  body.classList.toggle('dark-mode');
-  body.classList.toggle('light-mode');
+// URL hardcodeada para no andar enviando el .env
+const _gamesUrl = new URL('https://api.rawg.io/api/games');
 
-  //Pregunta si el body tiene la clase dark-mode para cambiar el tema del navbar
-  let theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
-  darkDropdown.setAttribute('data-bs-theme', theme);
+async function fetchGames(toSearch = '', page = 1, max = 20) {
+  // Copio la URL para no modificar la original
+  const gamesUrl = new URL(_gamesUrl);
+  // Extraigo los searchParams
+  const { searchParams } = gamesUrl;
 
-  //Pregunta si el body tiene la clase dark-mode para cambiar el texto del dropdown
-  buttonToggle.textContent = body.classList.contains('dark-mode')
-    ? 'Light Mode'
-    : 'Dark Mode';
+  if (!apiKey)
+    throw new Error('Se necesita una API key para realizar la petición');
 
-  //Cambia los iconos de los botones (toggle y eye)
-  toggleIcon.classList.toggle('bi-toggle-off');
-  toggleIcon.classList.toggle('bi-toggle-on');
+  searchParams.append('key', apiKey);
+  searchParams.append('page', page);
+  searchParams.append('page_size', max);
+  if ((searchParams.get('search') || '').trim().length > 0)
+    searchParams.append('search', toSearch);
 
-  eyeIcon.classList.toggle('bi-eye-fill');
-  eyeIcon.classList.toggle('bi-eye');
-});
+  try {
+    const response = await fetch(gamesUrl);
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// fetchGames().then(result => console.log(result));
