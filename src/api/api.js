@@ -1,4 +1,3 @@
-require('dotenv').config();
 const { VITE_API_URL: apiUrl, VITE_ACCESS_KEY: accessKey } = import.meta.env;
 
 async function fetchUsers() {
