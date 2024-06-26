@@ -29,11 +29,11 @@ a {
   background-size: cover;
 }
 .box2 {
-  background-image: url('/src/img/fondoIndex1.jfif');
+  background-image: url('/imagenes/fondoIndex1.jfif');
   background-position: left;
 }
 .box1 {
-  background-image: url('/src/img/fondoIndex2.jpg');
+  background-image: url('/imagenes/fondoIndex2.jpg');
   background-position: right;
 }
 /*Logo*/
