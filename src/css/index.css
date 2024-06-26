@@ -9,16 +9,33 @@
   --AzulOtraVez: #241a44;
   --Vino: #8d155e;
 }
+a {
+  color: var(--Blanco);
+}
 .contenedor {
-  width: 60vw;
+  width: 50vw;
   height: 100vh;
-  padding: 0 10vw;
-  margin: 0 auto;
+  padding: 0 2vw;
+  box-shadow: 0 0 4rem #090a10;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
+  z-index: 1;
 }
 
+.box {
+  height: 100vh;
+  width: 25vw;
+  background-size: cover;
+}
+.box2 {
+  background-image: url('/src/img/fondoIndex1.jfif');
+  background-position: left;
+}
+.box1 {
+  background-image: url('/src/img/fondoIndex2.jpg');
+  background-position: right;
+}
 /*Logo*/
 .logo {
   color: var(--Blanco);
