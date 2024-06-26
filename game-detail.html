@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Informacion de juego</title>
+    <link rel="stylesheet" href="/src/css/stylesInfo.css" />
+    <link
+      rel="shortcut icon"
+      href="public/imagenes/favicon.png"
+      type="image/x-icon"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="/src/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="dark-mode">
+    <nav class="navbar navbar-expand-lg bg-transparent" data-bs-theme="dark">
+      <div class="container-sm">
+        <a class="navbar-brand logo" href="./index.html">
+          <img
+            src="public/svg/control.svg"
+            alt="logo"
+            style="height: 2.3rem; width: 2.3rem"
+          />
+          <span class="text-uppercase fs-3">Games</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarScroll"
+          aria-controls="navbarScroll"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul class="navbar-nav me-auto ms-md-3 mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="bi bi-eye"></i>
+                <i class="bi bi-toggle-off"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <!--Togle para cambiar modo -->
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    role="button"
+                    type="button"
+                    id="toggleMode"
+                    >Light Mode</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <!-- Nuevo Botón de Géneros con Checkboxes -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdownGenres"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Géneros
+              </a>
+              <ul
+                class="dropdown-menu p-3 no-propagation"
+                aria-labelledby="navbarDropdownGenres"
+              >
+                <li>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="action"
+                    />
+                    <label class="form-check-label" for="action">Acción</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="adventure"
+                    />
+                    <label class="form-check-label" for="adventure"
+                      >Aventura</label
+                    >
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="sports"
+                    />
+                    <label class="form-check-label" for="sports"
+                      >Deportes</label
+                    >
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="strategy"
+                    />
+                    <label class="form-check-label" for="strategy"
+                      >Estrategia</label
+                    >
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="simulation"
+                    />
+                    <label class="form-check-label" for="simulation"
+                      >Simulación</label
+                    >
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="rpg"
+                    />
+                    <label class="form-check-label" for="rpg">RPG</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="puzzle"
+                    />
+                    <label class="form-check-label" for="puzzle">Puzzle</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="horror"
+                    />
+                    <label class="form-check-label" for="horror">Horror</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="racing"
+                    />
+                    <label class="form-check-label" for="racing"
+                      >Carreras</label
+                    >
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <!--Barra busqueda Id = barraBusqueda-->
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search for a game"
+              aria-label="Search"
+              id="barraBusqueda"
+            />
+            <!--Boton busqueda Id = botonBusqueda-->
+            <button
+              class="btn btn-outline-success"
+              type="submit"
+              id="botonBusqueda"
+            >
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="InformacionDelJuego">
+      <div class="contenido">
+        <div class="imagen">
+          <img src="public/imagenes/Hollow.JPG" alt="Hollow Knight" />
+        </div>
+        <div class="texto">
+          <h2 class="NombreJuego">Hollow Knight</h2>
+          <p>
+            Hollow Knight is a Metroidvania-type game developed by an indie
+            studio named Team Cherry. Most of the game's story is told through
+            the in-world items, tablets, and thoughts of other characters. Many
+            plot aspects are told to the player indirectly or through the secret
+            areas that provide a bit of lore in addition to an upgrade. At the
+            beginning of the game, the player visits a town of Dirtmouth. A town
+            built about the ruins of Hallownest. The players descend down into
+            the ruins to find some answers to his questions. The game revolves
+            mainly around the exploration of the in-game world, which requires
+            the players to have some platforming skills. The players have to
+            find secrets that are scattered around the level and battle their
+            enemies. There is a certain degree of backtracking in the game as
+            some areas are locked until the player defeats a certain boss or
+            picks up a specific item. Each area changes as the plot advances so
+            it may be surprising to come back in a certain area. The Protagonist
+            uses a nail which serves as a replacement for a sword. Players can
+            attack in four directions. The nail is upgradable.
+          </p>
+          <div class="detalles">
+            <div class="detalles-fila">
+              <span><strong>Launch Date:</strong> 22/2/2017</span>
+              <span><strong>Classification:</strong> Everyone 10+</span>
+              <span><strong>Rating:</strong> 4.41</span>
+              <span><strong>Votes:</strong> 2243</span>
+            </div>
+            <div class="detalles-fila">
+              <span
+                ><strong>Platforms:</strong> Nintendo Switch, Xbox One, PS Vita,
+                PC, macOS, Linux, PlayStation 4</span
+              >
+            </div>
+            <div class="detalles-fila">
+              <span
+                ><strong>Stores:</strong> Steam, GOG, Nintendo Store, Xbox
+                Store, PlayStation Store</span
+              >
+            </div>
+            <div class="detalles-fila">
+              <span><strong>Genres:</strong> Action, Indie, Platformer</span>
+            </div>
+            <div class="detalles-fila">
+              <span
+                ><strong>Tags:</strong> Singleplayer, Steam Achievements, Full
+                controller support, Atmospheric, Steam Cloud,
+                steam-trading-cards, Great Soundtrack, Story Rich, Open World,
+                2D, Difficult, Exploration, Controller support, Cute, Side
+                Scroller, Dark Fantasy, Metroidvania, Multiple Endings,
+                Hand-drawn, Gothic</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Collage de fotitos -->
+    <div class="Galeria">
+      <div class="row">
+        <div class="img">
+          <img
+            src="public/imagenes/Hollow1.jpg"
+            class="img-fluid"
+            alt="Imagen 1"
+          />
+        </div>
+        <div class="img">
+          <img
+            src="public/imagenes/Hollow2.JPG"
+            class="img-fluid"
+            alt="Imagen 2"
+          />
+        </div>
+        <div class="img">
+          <img
+            src="public/imagenes/HollowWallpaper.png"
+            class="img-fluid"
+            alt="Imagen 3"
+          />
+        </div>
+      </div>
+      <!-- Segunda fila de imágenes -->
+      <div class="row">
+        <div class="img">
+          <img
+            src="public/imagenes/Hollow3.jpg"
+            class="img-fluid"
+            alt="Imagen 4"
+          />
+        </div>
+        <div class="img">
+          <img
+            src="public/imagenes/Hollow 4.jpg"
+            class="img-fluid"
+            alt="Imagen 5"
+          />
+        </div>
+        <div class="img">
+          <img
+            src="public/imagenes/Hollow5.jpg"
+            class="img-fluid"
+            alt="Imagen 6"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Videoss -->
+    <div class="videos">
+      <div class="row">
+        <div class="vid">
+          <iframe
+            width="100%"
+            height="315"
+            src="https://www.youtube.com/embed/nSPJXlYjENE"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="vid">
+          <iframe
+            width="100%"
+            height="315"
+            src="https://www.youtube.com/embed/JSfuFlhsxZY"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/js/games.js"></script>
+    <script type="module" src="/src/js/all.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
