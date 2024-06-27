@@ -1,11 +1,15 @@
 import { obtainGames, obtainAGameData } from '/src/js/dataFetcher.js';
+import { gameCard } from '/src/js/templates/game-card';
+
 const games_container = document.getElementById('games-container');
 const txtBusqueda = document.getElementById('barraBusqueda');
 const btnBusqueda = document.getElementById('botonBusqueda');
 
-let page = 1;
-let totalPages = 20;
+// La pagina actual
+let _cooldown = false;
+let _page = 1;
 
+// Utilidad para reemplazar valores en un string HTML
 function HTMLreplacer(template, data) {
   let html = template;
   for (const key in data) {
@@ -16,6 +20,7 @@ function HTMLreplacer(template, data) {
   return html;
 }
 
+// Utilidad para cargar un archivo HTML como string
 async function loadHTMLAsString(url) {
   try {
     const response = await fetch(url);
@@ -28,235 +33,129 @@ async function loadHTMLAsString(url) {
     console.error('Error al cargar el archivo HTML:', error);
   }
 }
+
+function isOnCooldown() {
+  if (_cooldown) return true;
+  _cooldown = true;
+  setTimeout(() => (_cooldown = false), 3.5 * 1000);
+  return false;
+}
+
 /////////////////////////////////////////////////////
 // Funcion para buscar juegos al hacer click en buscar
 /////////////////////////////////////////////////////
 
-btnBusqueda.addEventListener('click', event => {
-  event.preventDefault();
-  mostrarJuego(true);
-});
+// btnBusqueda.addEventListener('click', event => {
+//   event.preventDefault();
+//   mostrarJuego(true);
+// });
 
-async function mostrarJuego() {
-  const cardTemplate = await loadHTMLAsString('/game-card.html');
-
-  let defaultCard = HTMLreplacer(cardTemplate, {
+async function loadGames(search, page, max) {
+  let defaultCard = gameCard({
     name: 'No games found',
     description: 'Try searching for a game',
     image: './imagenes/no-image.png',
   });
-  games_container.innerHTML = defaultCard;
+  if (page === 1) games_container.innerHTML = defaultCard;
 
-  let games = [];
-  if (txtBusqueda.value.trim() !== '') {
-    const search = txtBusqueda.value.trim();
-    games = await obtainGames(search, 1, 20);
-  } else {
-    games = await obtainGames('', page, 20);
-  }
+  const genres = [
+    document.getElementById('action').checked ? 'action' : '',
+    document.getElementById('adventure').checked ? 'adventure' : '',
+    document.getElementById('sports').checked ? 'sports' : '',
+    document.getElementById('strategy').checked ? 'strategy' : '',
+    document.getElementById('simulation').checked ? 'simulation' : '',
+    document.getElementById('rpg').checked ? 'rpg' : '',
+    document.getElementById('puzzle').checked ? 'puzzle' : '',
+    document.getElementById('horror').checked ? 'horror' : '',
+    document.getElementById('racing').checked ? 'racing' : '',
+  ].filter(genre => genre !== '');
 
-  const { results } = games;
+  const games = await obtainGames(search, page, max, genres);
 
-  const extraDataResults = await Promise.allSettled(
-    results.map(game => obtainAGameData(game.id))
-  );
-  console.log(results);
+  // let games = [];
+  // if (txtBusqueda.value.trim() !== '') {
+  //   const search = txtBusqueda.value.trim();
+  //   games = await obtainGames(search, 1, 20);
+  // } else {
+  //   games = await obtainGames('', page, 20);
+  // }
 
-  const extraDatas = extraDataResults.map(result => result.value || null);
+  // const { results } = games;
 
-  if (results && results.length > 0) {
-    //quita la plantilla por defecto
-    games_container.innerHTML = '';
+  // const extraDataResults = await Promise.allSettled(
+  //   results.map(game => obtainAGameData(game.id))
+  // );
+  // console.log(results);
 
-    results.map(game => {
-      if (!game) return '';
+  // const extraDatas = extraDataResults.map(result => result.value || null);
 
-      const htmlContent = `
-      <div class="card">
-        <div class="card-img">
-          <img src="${game.background_image}" class="card-img-top" alt="${
-        game.name
-      }" />
-        </div>
-        <div class="card-body text-center">
-          <h5 class="card-title">${game.name}</h5>
-          <a href="/game-detail.html" class="btn btn-primary">View More</a>
-        </div>
-        <section class="stars">
-          <div class="star">
-            <img src="/public/imagenes/dark-stars.png" alt="stars" />
-          </div>
-          <div class="progress">
-            <div
-              class="progress-bar bg-warning"
-              role="progressbar"
-              style="width: ${Math.floor((game.rating / 5) * 100) + '%'};"
-              aria-valuenow="25"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            ></div>
-          </div>
-        </section>
-      </div>
-      `;
-      games_container.innerHTML += htmlContent;
-    });
-  }
-  window.scrollTo(0, 0);
-}
-(async () => {
-  window.scrollTo(0, 0);
+  // if (results && results.length > 0) {
+  //   //quita la plantilla por defecto
+  //   games_container.innerHTML = '';
 
-  const cardTemplate = await loadHTMLAsString('/game-card.html');
-  let page = 1;
-  let isLoadingState = 1;
+  //   results.map(game => {
+  //     if (!game) return '';
 
-  const defaultCard = HTMLreplacer(cardTemplate, {
-    name: 'No games found',
-    description: 'Try searching for a game',
-    image: './imagenes/no-image.png',
-  });
-  games_container.innerHTML = defaultCard;
-
-  const firstGames = await obtainGames('', page, 20);
+  //     games_container.innerHTML += htmlContent;
+  //   });
+  // }
+  // window.scrollTo(0, 0);
 
   // En el caso de poder obtener las cartas, se insertan en el contenedor
-  if (firstGames && firstGames.results?.length > 0) {
-    games_container.innerHTML = '';
-    const { results } = firstGames;
+  if (games && games.results?.length > 0) {
+    const { results } = games;
     const extraDataResults = await Promise.allSettled(
       results.map(game => obtainAGameData(game.id))
     );
     const extraDatas = extraDataResults.map(result => result.value || null);
 
-    console.log(results);
-    results.forEach((game, index) => {
+    const cards = results.map((game, index) => {
+      // Por cada juego ...
+
       if (!game) return '';
-      const gameData = extraDatas[index] || {};
+      const extraGameData = extraDatas[index] || {};
 
-      const genres = gameData.genres?.map(genre => genre.name) || [];
-      const htmlContent = `<div class="card">
-        <div class="card-img">
-        
-        <img src="${game.background_image}" class="card-img-top" alt="${
-        game.name
-      }" />
-      </div>
-        <div class="card-body text-center">
-          <h5 class="card-title text-center">${game.name}</h5>
-          <div class="card-informacionOculta">
-          </div>
-          <section class="stars text-start">
-          <div class="star">
-            <img src="/public/imagenes/dark-stars.png" alt="stars" />
-          </div>
-          <div class="d-flex justify-content-between">  
-          <div class="progress">
-            <div
-              class="progress-bar bg-warning"
-              role="progressbar"
-              style="width: ${Math.floor((game.rating / 5) * 100) + '%'};"
-              aria-valuenow="25"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            ></div>
-            <p class="text-warning">${game.rating}</p>
+      // const words = gameData.description?.split(' ') || [];
+      // const stars_rating = Math.floor((game.rating / 5) * 100) + '%';
 
-          </div>
-
-          </div>
-          
-        </section>
-
-        <p class="text-start">${genres.join(', ')}</p>
-        <a href="/game-detail.html" class="btn btn-primary">View More</a>
-        </div>
-        
-      </div>
-      `;
-      games_container.innerHTML += htmlContent;
+      return gameCard(game, extraGameData, genres);
     });
 
-    setTimeout(() => (isLoadingState = 0), 3 * 1000);
-
-    // Evento para detectar si se llegó al final de la página
-    window.addEventListener('scroll', () => {
-      const posicionDesplazamiento = window.scrollY + window.innerHeight;
-      const alturaDocumento = document.documentElement.scrollHeight;
-
-      // Si no se llegó al final de la página o ya se está cargando, no hacer nada
-      if (!(posicionDesplazamiento >= alturaDocumento - 1) || isLoadingState)
-        return;
-
-      isLoadingState = 1;
-      console.log('Llegaste al final de la página');
-
-      setTimeout(() => (isLoadingState = 0), 5 * 1000);
-
-      // Cargar más juegos
-
-      obtainGames('', ++page, 20).then(async games => {
-        if (!games || !games.results?.length) return;
-
-        const extraDataResults = await Promise.allSettled(
-          games.results.map(game => obtainAGameData(game.id))
-        );
-        const extraDatas = extraDataResults.map(result => result.value || null);
-
-        const newCards = games.results.map((game, index) => {
-          if (!game) return '';
-          const gameData = extraDatas[index] || {};
-
-          const words = gameData.description_raw?.split(' ') || [];
-
-          const genres = gameData.genres?.map(genre => genre.name) || [];
-
-          const htmlContent = `<div class="card">
-              <div class="card-img">
-              
-              <img src="${game.background_image}" class="card-img-top" alt="${
-            game.name
-          }" />
-            </div>
-              <div class="card-body text-center">
-                <h5 class="card-title text-center">${game.name}</h5>
-                <div class="card-informacionOculta">
-                </div>
-                <section class="stars text-start">
-                <div class="star">
-                  <img src="/public/imagenes/dark-stars.png" alt="stars" />
-                </div>
-                <div class="d-flex justify-content-between">  
-                <div class="progress">
-                  <div
-                    class="progress-bar bg-warning"
-                    role="progressbar"
-                    style="width: ${Math.floor((game.rating / 5) * 100) + '%'};"
-                    aria-valuenow="25"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                  <p class="text-warning">${game.rating}</p>
-
-                </div>
-
-                </div>
-                
-              </section>
-
-              <p class="text-start">${genres.join(', ')}</p>
-              <a href="/game-detail.html" class="btn btn-primary">View More</a>
-              </div>
-              
-            </div>
-            `;
-          return htmlContent;
-        });
-
-        games_container.innerHTML += newCards.join('');
-      });
-    });
+    console.log(cards);
+    console.log('Page:', page);
+    if (page === 1) {
+      games_container.innerHTML = cards.join('');
+    } else {
+      games_container.innerHTML += cards.join('');
+    }
   }
+}
 
-  //
+// Evento para detectar si se llegó al final de la página
+window.addEventListener('scroll', () => {
+  const posicionDesplazamiento = window.scrollY + window.innerHeight;
+  const alturaDocumento = document.documentElement.scrollHeight;
+
+  // Si no se llegó al final de la página o ya se está cargando, no hacer nada
+  if (!(posicionDesplazamiento >= alturaDocumento - 1) || isOnCooldown())
+    return;
+  console.log('Llegaste al final de la página');
+
+  // Cargar más juegos
+
+  loadGames(txtBusqueda.value, ++_page, 20);
+});
+
+// Funcion MAIN Auto Ejecutable
+(async () => {
+  window.scrollTo(0, 0);
+
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const search = urlParams.get('search') || '';
+
+  if (search) txtBusqueda.value = search;
+
+  isOnCooldown();
+  loadGames(search, 1, 20);
 })();
