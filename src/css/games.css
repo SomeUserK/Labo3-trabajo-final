@@ -10,9 +10,8 @@
   --Vino: #8d155e;
 }
 
-main {
-  background-color: var(--AzulOtraVez);
-  color: var(--Blanco);
+h1 {
+  color: var(--AzulOSCURO);
 }
 /*logo*/
 .logo:hover {
@@ -68,7 +67,11 @@ main {
   background-color: var(--AzulMarino);
   color: var(--Blanco);
 }
-
+.dark-mode main h1 {
+  color: var(--Blanco);
+  background-color: var(--AzulOtraVez);
+  margin: 0;
+}
 .dark-mode .btn-primary {
   background-color: var(--AzulOtraVez);
   border: solid 1px var(--CelesteOscuro);
