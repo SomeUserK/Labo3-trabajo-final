@@ -1,0 +1,849 @@
+/* Ejemplo 
+
+- Parametros
+
+https://api.rawg.io/api/games?page=1&page_size=1&key=******	
+
+- Docs
+
+https://api.rawg.io/docs/#operation/games_list
+
+- respuesta de la API
+
+{
+  "count": 869336,
+  "next": "https://api.rawg.io/api/games?key=******&page=2&page_size=1",
+  "previous": null,
+  "results": [
+    {
+      "id": 3498,
+      "slug": "grand-theft-auto-v",
+      "name": "Grand Theft Auto V",
+      "released": "2013-09-17",
+      "tba": false,
+      "background_image": "https://media.rawg.io/media/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg",
+      "rating": 4.47,
+      "rating_top": 5,
+      "ratings": [
+        {
+          "id": 5,
+          "title": "exceptional",
+          "count": 4089,
+          "percent": 59.02
+        },
+        {
+          "id": 4,
+          "title": "recommended",
+          "count": 2271,
+          "percent": 32.78
+        },
+        {
+          "id": 3,
+          "title": "meh",
+          "count": 440,
+          "percent": 6.35
+        },
+        {
+          "id": 1,
+          "title": "skip",
+          "count": 128,
+          "percent": 1.85
+        }
+      ],
+      "ratings_count": 6824,
+      "reviews_text_count": 60,
+      "added": 21002,
+      "added_by_status": {
+        "yet": 533,
+        "owned": 12093,
+        "beaten": 5933,
+        "toplay": 609,
+        "dropped": 1105,
+        "playing": 729
+      },
+      "metacritic": 92,
+      "playtime": 74,
+      "suggestions_count": 432,
+      "updated": "2024-06-22T22:35:05",
+      "user_game": null,
+      "reviews_count": 6928,
+      "saturated_color": "0f0f0f",
+      "dominant_color": "0f0f0f",
+      "platforms": [
+        {
+          "platform": {
+            "id": 4,
+            "name": "PC",
+            "slug": "pc",
+            "image": null,
+            "year_end": null,
+            "year_start": null,
+            "games_count": 531913,
+            "image_background": "https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg"
+          },
+          "released_at": "2013-09-17",
+          "requirements_en": {
+            "minimum": "Minimum:OS: Windows 10 64 Bit, Windows 8.1 64 Bit, Windows 8 64 Bit, Windows 7 64 Bit Service Pack 1, Windows Vista 64 Bit Service Pack 2* (*NVIDIA video card recommended if running Vista OS)Processor: Intel Core 2 Quad CPU Q6600 @ 2.40GHz (4 CPUs) / AMD Phenom 9850 Quad-Core Processor (4 CPUs) @ 2.5GHzMemory: 4 GB RAMGraphics: NVIDIA 9800 GT 1GB / AMD HD 4870 1GB (DX 10, 10.1, 11)Storage: 72 GB available spaceSound Card: 100% DirectX 10 compatibleAdditional Notes: Over time downloadable content and programming changes will change the system requirements for this game.  Please refer to your hardware manufacturer and www.rockstargames.com/support for current compatibility information. Some system components such as mobile chipsets, integrated, and AGP graphics cards may be incompatible. Unlisted specifications may not be supported by publisher.     Other requirements:  Installation and online play requires log-in to Rockstar Games Social Club (13+) network; internet connection required for activation, online play, and periodic entitlement verification; software installations required including Rockstar Games Social Club platform, DirectX , Chromium, and Microsoft Visual C++ 2008 sp1 Redistributable Package, and authentication software that recognizes certain hardware attributes for entitlement, digital rights management, system, and other support purposes.     SINGLE USE SERIAL CODE REGISTRATION VIA INTERNET REQUIRED; REGISTRATION IS LIMITED TO ONE ROCKSTAR GAMES SOCIAL CLUB ACCOUNT (13+) PER SERIAL CODE; ONLY ONE PC LOG-IN ALLOWED PER SOCIAL CLUB ACCOUNT AT ANY TIME; SERIAL CODE(S) ARE NON-TRANSFERABLE ONCE USED; SOCIAL CLUB ACCOUNTS ARE NON-TRANSFERABLE.  Partner Requirements:  Please check the terms of service of this site before purchasing this software.",
+            "recommended": "Recommended:OS: Windows 10 64 Bit, Windows 8.1 64 Bit, Windows 8 64 Bit, Windows 7 64 Bit Service Pack 1Processor: Intel Core i5 3470 @ 3.2GHz (4 CPUs) / AMD X8 FX-8350 @ 4GHz (8 CPUs)Memory: 8 GB RAMGraphics: NVIDIA GTX 660 2GB / AMD HD 7870 2GBStorage: 72 GB available spaceSound Card: 100% DirectX 10 compatibleAdditional Notes:"
+          },
+          "requirements_ru": null
+        },
+        {
+          "platform": {
+            "id": 187,
+            "name": "PlayStation 5",
+            "slug": "playstation5",
+            "image": null,
+            "year_end": null,
+            "year_start": 2020,
+            "games_count": 1095,
+            "image_background": "https://media.rawg.io/media/games/2ae/2aedae90b1377a0f3e5ce54d24f8e41a.jpg"
+          },
+          "released_at": "2013-09-17",
+          "requirements_en": null,
+          "requirements_ru": null
+        },
+        {
+          "platform": {
+            "id": 186,
+            "name": "Xbox Series S/X",
+            "slug": "xbox-series-x",
+            "image": null,
+            "year_end": null,
+            "year_start": 2020,
+            "games_count": 954,
+            "image_background": "https://media.rawg.io/media/games/ffe/ffed87105b14f5beff72ff44a7793fd5.jpg"
+          },
+          "released_at": "2013-09-17",
+          "requirements_en": null,
+          "requirements_ru": null
+        },
+        {
+          "platform": {
+            "id": 18,
+            "name": "PlayStation 4",
+            "slug": "playstation4",
+            "image": null,
+            "year_end": null,
+            "year_start": null,
+            "games_count": 6821,
+            "image_background": "https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg"
+          },
+          "released_at": "2013-09-17",
+          "requirements_en": null,
+          "requirements_ru": null
+        },
+        {
+          "platform": {
+            "id": 16,
+            "name": "PlayStation 3",
+            "slug": "playstation3",
+            "image": null,
+            "year_end": null,
+            "year_start": null,
+            "games_count": 3164,
+            "image_background": "https://media.rawg.io/media/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg"
+          },
+          "released_at": "2013-09-17",
+          "requirements_en": null,
+          "requirements_ru": null
+        },
+        {
+          "platform": {
+            "id": 14,
+            "name": "Xbox 360",
+            "slug": "xbox360",
+            "image": null,
+            "year_end": null,
+            "year_start": null,
+            "games_count": 2800,
+            "image_background": "https://media.rawg.io/media/games/157/15742f2f67eacff546738e1ab5c19d20.jpg"
+          },
+          "released_at": "2013-09-17",
+          "requirements_en": null,
+          "requirements_ru": null
+        },
+        {
+          "platform": {
+            "id": 1,
+            "name": "Xbox One",
+            "slug": "xbox-one",
+            "image": null,
+            "year_end": null,
+            "year_start": null,
+            "games_count": 5633,
+            "image_background": "https://media.rawg.io/media/games/2ba/2bac0e87cf45e5b508f227d281c9252a.jpg"
+          },
+          "released_at": "2013-09-17",
+          "requirements_en": null,
+          "requirements_ru": null
+        }
+      ],
+      "parent_platforms": [
+        {
+          "platform": {
+            "id": 1,
+            "name": "PC",
+            "slug": "pc"
+          }
+        },
+        {
+          "platform": {
+            "id": 2,
+            "name": "PlayStation",
+            "slug": "playstation"
+          }
+        },
+        {
+          "platform": {
+            "id": 3,
+            "name": "Xbox",
+            "slug": "xbox"
+          }
+        }
+      ],
+      "genres": [
+        {
+          "id": 4,
+          "name": "Action",
+          "slug": "action",
+          "games_count": 180710,
+          "image_background": "https://media.rawg.io/media/games/490/49016e06ae2103881ff6373248843069.jpg"
+        }
+      ],
+      "stores": [
+        {
+          "id": 290375,
+          "store": {
+            "id": 3,
+            "name": "PlayStation Store",
+            "slug": "playstation-store",
+            "domain": "store.playstation.com",
+            "games_count": 7950,
+            "image_background": "https://media.rawg.io/media/games/73e/73eecb8909e0c39fb246f457b5d6cbbe.jpg"
+          }
+        },
+        {
+          "id": 438095,
+          "store": {
+            "id": 11,
+            "name": "Epic Games",
+            "slug": "epic-games",
+            "domain": "epicgames.com",
+            "games_count": 1336,
+            "image_background": "https://media.rawg.io/media/games/26d/26d4437715bee60138dab4a7c8c59c92.jpg"
+          }
+        },
+        {
+          "id": 290376,
+          "store": {
+            "id": 1,
+            "name": "Steam",
+            "slug": "steam",
+            "domain": "store.steampowered.com",
+            "games_count": 95008,
+            "image_background": "https://media.rawg.io/media/games/736/73619bd336c894d6941d926bfd563946.jpg"
+          }
+        },
+        {
+          "id": 290377,
+          "store": {
+            "id": 7,
+            "name": "Xbox 360 Store",
+            "slug": "xbox360",
+            "domain": "marketplace.xbox.com",
+            "games_count": 1912,
+            "image_background": "https://media.rawg.io/media/games/c6b/c6bfece1daf8d06bc0a60632ac78e5bf.jpg"
+          }
+        },
+        {
+          "id": 290378,
+          "store": {
+            "id": 2,
+            "name": "Xbox Store",
+            "slug": "xbox-store",
+            "domain": "microsoft.com",
+            "games_count": 4855,
+            "image_background": "https://media.rawg.io/media/games/490/49016e06ae2103881ff6373248843069.jpg"
+          }
+        }
+      ],
+      "clip": null,
+      "tags": [
+        {
+          "id": 31,
+          "name": "Singleplayer",
+          "slug": "singleplayer",
+          "language": "eng",
+          "games_count": 223893,
+          "image_background": "https://media.rawg.io/media/games/310/3106b0e012271c5ffb16497b070be739.jpg"
+        },
+        {
+          "id": 40847,
+          "name": "Steam Achievements",
+          "slug": "steam-achievements",
+          "language": "eng",
+          "games_count": 38096,
+          "image_background": "https://media.rawg.io/media/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg"
+        },
+        {
+          "id": 7,
+          "name": "Multiplayer",
+          "slug": "multiplayer",
+          "language": "eng",
+          "games_count": 38060,
+          "image_background": "https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg"
+        },
+        {
+          "id": 40836,
+          "name": "Full controller support",
+          "slug": "full-controller-support",
+          "language": "eng",
+          "games_count": 18077,
+          "image_background": "https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg"
+        },
+        {
+          "id": 13,
+          "name": "Atmospheric",
+          "slug": "atmospheric",
+          "language": "eng",
+          "games_count": 33347,
+          "image_background": "https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg"
+        },
+        {
+          "id": 42,
+          "name": "Great Soundtrack",
+          "slug": "great-soundtrack",
+          "language": "eng",
+          "games_count": 3399,
+          "image_background": "https://media.rawg.io/media/games/d82/d82990b9c67ba0d2d09d4e6fa88885a7.jpg"
+        },
+        {
+          "id": 24,
+          "name": "RPG",
+          "slug": "rpg",
+          "language": "eng",
+          "games_count": 21094,
+          "image_background": "https://media.rawg.io/media/games/e6d/e6de699bd788497f4b52e2f41f9698f2.jpg"
+        },
+        {
+          "id": 18,
+          "name": "Co-op",
+          "slug": "co-op",
+          "language": "eng",
+          "games_count": 11626,
+          "image_background": "https://media.rawg.io/media/games/f87/f87457e8347484033cb34cde6101d08d.jpg"
+        },
+        {
+          "id": 36,
+          "name": "Open World",
+          "slug": "open-world",
+          "language": "eng",
+          "games_count": 7505,
+          "image_background": "https://media.rawg.io/media/games/d69/d69810315bd7e226ea2d21f9156af629.jpg"
+        },
+        {
+          "id": 411,
+          "name": "cooperative",
+          "slug": "cooperative",
+          "language": "eng",
+          "games_count": 5003,
+          "image_background": "https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg"
+        },
+        {
+          "id": 8,
+          "name": "First-Person",
+          "slug": "first-person",
+          "language": "eng",
+          "games_count": 31743,
+          "image_background": "https://media.rawg.io/media/games/9dd/9ddabb34840ea9227556670606cf8ea3.jpg"
+        },
+        {
+          "id": 149,
+          "name": "Third Person",
+          "slug": "third-person",
+          "language": "eng",
+          "games_count": 11528,
+          "image_background": "https://media.rawg.io/media/games/310/3106b0e012271c5ffb16497b070be739.jpg"
+        },
+        {
+          "id": 4,
+          "name": "Funny",
+          "slug": "funny",
+          "language": "eng",
+          "games_count": 24903,
+          "image_background": "https://media.rawg.io/media/games/ec3/ec3a7db7b8ab5a71aad622fe7c62632f.jpg"
+        },
+        {
+          "id": 37,
+          "name": "Sandbox",
+          "slug": "sandbox",
+          "language": "eng",
+          "games_count": 6955,
+          "image_background": "https://media.rawg.io/media/games/995/9951d9d55323d08967640f7b9ab3e342.jpg"
+        },
+        {
+          "id": 123,
+          "name": "Comedy",
+          "slug": "comedy",
+          "language": "eng",
+          "games_count": 12468,
+          "image_background": "https://media.rawg.io/media/games/a3c/a3c529a12c896c0ef02db5b4741de2ba.jpg"
+        },
+        {
+          "id": 150,
+          "name": "Third-Person Shooter",
+          "slug": "third-person-shooter",
+          "language": "eng",
+          "games_count": 3437,
+          "image_background": "https://media.rawg.io/media/games/a3c/a3c529a12c896c0ef02db5b4741de2ba.jpg"
+        },
+        {
+          "id": 62,
+          "name": "Moddable",
+          "slug": "moddable",
+          "language": "eng",
+          "games_count": 933,
+          "image_background": "https://media.rawg.io/media/games/62c/62c7c8b28a27b83680b22fb9d33fc619.jpg"
+        },
+        {
+          "id": 144,
+          "name": "Crime",
+          "slug": "crime",
+          "language": "eng",
+          "games_count": 2832,
+          "image_background": "https://media.rawg.io/media/games/d46/d46373f39458670305704ef089387520.jpg"
+        },
+        {
+          "id": 62349,
+          "name": "vr mod",
+          "slug": "vr-mod",
+          "language": "eng",
+          "games_count": 17,
+          "image_background": "https://media.rawg.io/media/screenshots/1bb/1bb3f78f0fe43b5d5ca2f3da5b638840.jpg"
+        }
+      ],
+      "esrb_rating": {
+        "id": 4,
+        "name": "Mature",
+        "slug": "mature"
+      },
+      "short_screenshots": [
+        {
+          "id": -1,
+          "image": "https://media.rawg.io/media/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg"
+        },
+        {
+          "id": 1827221,
+          "image": "https://media.rawg.io/media/screenshots/a7c/a7c43871a54bed6573a6a429451564ef.jpg"
+        },
+        {
+          "id": 1827222,
+          "image": "https://media.rawg.io/media/screenshots/cf4/cf4367daf6a1e33684bf19adb02d16d6.jpg"
+        },
+        {
+          "id": 1827223,
+          "image": "https://media.rawg.io/media/screenshots/f95/f9518b1d99210c0cae21fc09e95b4e31.jpg"
+        },
+        {
+          "id": 1827225,
+          "image": "https://media.rawg.io/media/screenshots/a5c/a5c95ea539c87d5f538763e16e18fb99.jpg"
+        },
+        {
+          "id": 1827226,
+          "image": "https://media.rawg.io/media/screenshots/a7e/a7e990bc574f4d34e03b5926361d1ee7.jpg"
+        },
+        {
+          "id": 1827227,
+          "image": "https://media.rawg.io/media/screenshots/592/592e2501d8734b802b2a34fee2df59fa.jpg"
+        }
+      ]
+    }
+  ],
+  "seo_title": "All Games",
+  "seo_description": "",
+  "seo_keywords": "",
+  "seo_h1": "All Games",
+  "noindex": false,
+  "nofollow": false,
+  "description": "",
+  "filters": {
+    "years": [
+      {
+        "from": 2020,
+        "to": 2024,
+        "filter": "2020-01-01,2024-12-31",
+        "decade": 2020,
+        "years": [
+          {
+            "year": 2024,
+            "count": 7772,
+            "nofollow": false
+          },
+          {
+            "year": 2023,
+            "count": 61939,
+            "nofollow": false
+          },
+          {
+            "year": 2022,
+            "count": 168166,
+            "nofollow": false
+          },
+          {
+            "year": 2021,
+            "count": 158698,
+            "nofollow": false
+          },
+          {
+            "year": 2020,
+            "count": 121360,
+            "nofollow": false
+          }
+        ],
+        "nofollow": true,
+        "count": 517935
+      },
+      {
+        "from": 2010,
+        "to": 2019,
+        "filter": "2010-01-01,2019-12-31",
+        "decade": 2010,
+        "years": [
+          {
+            "year": 2019,
+            "count": 73685,
+            "nofollow": false
+          },
+          {
+            "year": 2018,
+            "count": 67945,
+            "nofollow": false
+          },
+          {
+            "year": 2017,
+            "count": 54589,
+            "nofollow": true
+          },
+          {
+            "year": 2016,
+            "count": 40244,
+            "nofollow": true
+          },
+          {
+            "year": 2015,
+            "count": 25897,
+            "nofollow": true
+          },
+          {
+            "year": 2014,
+            "count": 15358,
+            "nofollow": true
+          },
+          {
+            "year": 2013,
+            "count": 6341,
+            "nofollow": true
+          },
+          {
+            "year": 2012,
+            "count": 5389,
+            "nofollow": true
+          },
+          {
+            "year": 2011,
+            "count": 4314,
+            "nofollow": true
+          },
+          {
+            "year": 2010,
+            "count": 3899,
+            "nofollow": true
+          }
+        ],
+        "nofollow": true,
+        "count": 297661
+      },
+      {
+        "from": 2000,
+        "to": 2009,
+        "filter": "2000-01-01,2009-12-31",
+        "decade": 2000,
+        "years": [
+          {
+            "year": 2009,
+            "count": 3116,
+            "nofollow": true
+          },
+          {
+            "year": 2008,
+            "count": 2042,
+            "nofollow": true
+          },
+          {
+            "year": 2007,
+            "count": 1593,
+            "nofollow": true
+          },
+          {
+            "year": 2006,
+            "count": 1309,
+            "nofollow": true
+          },
+          {
+            "year": 2005,
+            "count": 1197,
+            "nofollow": true
+          },
+          {
+            "year": 2004,
+            "count": 1191,
+            "nofollow": true
+          },
+          {
+            "year": 2003,
+            "count": 1170,
+            "nofollow": true
+          },
+          {
+            "year": 2002,
+            "count": 1026,
+            "nofollow": true
+          },
+          {
+            "year": 2001,
+            "count": 1148,
+            "nofollow": true
+          },
+          {
+            "year": 2000,
+            "count": 1047,
+            "nofollow": true
+          }
+        ],
+        "nofollow": true,
+        "count": 14839
+      },
+      {
+        "from": 1990,
+        "to": 1999,
+        "filter": "1990-01-01,1999-12-31",
+        "decade": 1990,
+        "years": [
+          {
+            "year": 1999,
+            "count": 813,
+            "nofollow": true
+          },
+          {
+            "year": 1998,
+            "count": 752,
+            "nofollow": true
+          },
+          {
+            "year": 1997,
+            "count": 881,
+            "nofollow": true
+          },
+          {
+            "year": 1996,
+            "count": 791,
+            "nofollow": true
+          },
+          {
+            "year": 1995,
+            "count": 878,
+            "nofollow": true
+          },
+          {
+            "year": 1994,
+            "count": 840,
+            "nofollow": true
+          },
+          {
+            "year": 1993,
+            "count": 762,
+            "nofollow": true
+          },
+          {
+            "year": 1992,
+            "count": 672,
+            "nofollow": true
+          },
+          {
+            "year": 1991,
+            "count": 589,
+            "nofollow": true
+          },
+          {
+            "year": 1990,
+            "count": 545,
+            "nofollow": true
+          }
+        ],
+        "nofollow": true,
+        "count": 7523
+      },
+      {
+        "from": 1980,
+        "to": 1989,
+        "filter": "1980-01-01,1989-12-31",
+        "decade": 1980,
+        "years": [
+          {
+            "year": 1989,
+            "count": 440,
+            "nofollow": true
+          },
+          {
+            "year": 1988,
+            "count": 325,
+            "nofollow": true
+          },
+          {
+            "year": 1987,
+            "count": 348,
+            "nofollow": true
+          },
+          {
+            "year": 1986,
+            "count": 254,
+            "nofollow": true
+          },
+          {
+            "year": 1985,
+            "count": 231,
+            "nofollow": true
+          },
+          {
+            "year": 1984,
+            "count": 185,
+            "nofollow": true
+          },
+          {
+            "year": 1983,
+            "count": 207,
+            "nofollow": true
+          },
+          {
+            "year": 1982,
+            "count": 149,
+            "nofollow": true
+          },
+          {
+            "year": 1981,
+            "count": 66,
+            "nofollow": true
+          },
+          {
+            "year": 1980,
+            "count": 35,
+            "nofollow": true
+          }
+        ],
+        "nofollow": true,
+        "count": 2240
+      },
+      {
+        "from": 1970,
+        "to": 1979,
+        "filter": "1970-01-01,1979-12-31",
+        "decade": 1970,
+        "years": [
+          {
+            "year": 1979,
+            "count": 15,
+            "nofollow": true
+          },
+          {
+            "year": 1978,
+            "count": 17,
+            "nofollow": true
+          },
+          {
+            "year": 1977,
+            "count": 13,
+            "nofollow": true
+          },
+          {
+            "year": 1976,
+            "count": 7,
+            "nofollow": true
+          },
+          {
+            "year": 1975,
+            "count": 3,
+            "nofollow": true
+          },
+          {
+            "year": 1974,
+            "count": 2,
+            "nofollow": true
+          },
+          {
+            "year": 1973,
+            "count": 1,
+            "nofollow": true
+          },
+          {
+            "year": 1972,
+            "count": 2,
+            "nofollow": true
+          },
+          {
+            "year": 1971,
+            "count": 6,
+            "nofollow": true
+          },
+          {
+            "year": 1970,
+            "count": 1,
+            "nofollow": true
+          }
+        ],
+        "nofollow": true,
+        "count": 67
+      },
+      {
+        "from": 1960,
+        "to": 1969,
+        "filter": "1960-01-01,1969-12-31",
+        "decade": 1960,
+        "years": [
+          {
+            "year": 1962,
+            "count": 1,
+            "nofollow": true
+          }
+        ],
+        "nofollow": true,
+        "count": 1
+      },
+      {
+        "from": 1950,
+        "to": 1959,
+        "filter": "1950-01-01,1959-12-31",
+        "decade": 1950,
+        "years": [
+          {
+            "year": 1958,
+            "count": 1,
+            "nofollow": true
+          },
+          {
+            "year": 1954,
+            "count": 1,
+            "nofollow": true
+          }
+        ],
+        "nofollow": true,
+        "count": 2
+      }
+    ]
+  },
+  "nofollow_collections": [
+    "stores"
+  ]
+}
+
+*/

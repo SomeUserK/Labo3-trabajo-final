@@ -1,0 +1,55 @@
+:root {
+  --AzulOSCURO: #23234b;
+  --AzulMarino: #292a50;
+  --Cian: #06cfce;
+  --Rojo: #d3167c;
+  --Blanco: #ececed;
+  --CianOscuro: #0b959f;
+  --CelesteOscuro: #285877;
+  --AzulOtraVez: #241a44;
+  --Vino: #8d155e;
+}
+a {
+  color: var(--Blanco);
+}
+.contenedor {
+  width: 50vw;
+  height: 100vh;
+  padding: 0 2vw;
+  box-shadow: 0 0 4rem #090a10;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  z-index: 1;
+}
+
+.box {
+  height: 100vh;
+  width: 25vw;
+  background-size: cover;
+}
+.box2 {
+  background-image: url('/imagenes/fondoIndex1.jfif');
+  background-position: left;
+}
+.box1 {
+  background-image: url('/imagenes/fondoIndex2.jpg');
+  background-position: right;
+}
+/*Logo*/
+.logo {
+  color: var(--Blanco);
+}
+.logo::after {
+  font-size: 1.3rem;
+  top: 60%;
+  left: 45%;
+}
+.logo a:hover {
+  filter: brightness(0.9);
+}
+@media screen and (max-width: 700px) {
+  .contenedor {
+    width: 100%;
+  }
+}

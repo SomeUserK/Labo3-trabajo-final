@@ -1,7 +1,7 @@
 {
   "name": "labo-trabajo-final",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -14,5 +14,8 @@
   "description": "> Para descargar, podes darle a CODE y descargar repostorio",
   "main": "index.js",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
 }

@@ -1,0 +1,192 @@
+:root {
+  --AzulOSCURO: #23234b;
+  --AzulMarino: #292a50;
+  --Cian: #06cfce;
+  --Rojo: #d3167c;
+  --Blanco: #ececed;
+  --CianOscuro: #0b959f;
+  --CelesteOscuro: #285877;
+  --AzulOtraVez: #241a44;
+  --Vino: #8d155e;
+}
+
+body {
+  background: linear-gradient(45deg, #090a10 40%, #161b24);
+  color: var(--Blanco);
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h2, h3 {
+  color: var(--Cian);
+}
+
+.InformacionDelJuego {
+  max-width: 1300px;
+  margin: auto;
+  padding: 20px;
+  background-color: transparent; 
+}
+
+.contenido {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.imagen {
+  flex: 1 1 45%;
+  min-width: 20%;
+  margin-top: 6.5%;
+  margin-right: 20px;
+}
+
+.imagen img {
+  width: 100%;
+  max-width: 100%;
+  border: 5px solid var(--Cian);
+  border-radius: 10px;
+}
+
+.texto {
+  flex: 2 1 600px;
+}
+
+.dark-mode .texto{
+  color: var(--Blanco);
+}
+
+.NombreJuego {
+  font-size: 200%;
+  text-align: center;
+  color: var(--Cian);
+  margin-bottom: 10px;
+}
+
+.detalles {
+  margin-top: 20px;
+}
+
+.detalles-fila {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.detalles-fila span {
+  flex: 1 1 200px;
+}
+
+.detalles-fila strong {
+  color: var(--Rojo);
+}
+
+.Galeria {
+  padding: 20px;
+  margin: 0px;
+}
+
+.Galeria img {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.videos {
+  background-color: var(--AzulOtraVez);
+  padding: 20px;
+  padding-bottom: 1px;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+.videos iframe {
+  border: 5px solid var(--Rojo);
+  border-radius: 10px;
+}
+
+.videos .embed-responsive {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.videos .embed-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 10px;
+}
+
+
+.text-center {
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.img, .vid {
+  flex: 1;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .img, .vid {
+    flex-basis: 100%;
+  }
+}
+
+.img {
+  margin: 1%;
+}
+
+.vid {
+  margin-bottom: 10px; 
+}
+
+
+
+/*Logo*/
+.logo {
+  display: inline-block;
+  position: relative;
+  font-family: 'Pixelify Sans', sans-serif;
+}
+.logo span {
+  position: relative;
+}
+.logo::after {
+  content: 'For everyone';
+  font-size: 0.8rem;
+  position: absolute;
+  color: var(--Cian);
+  top: 66%;
+  left: 33%;
+}
+.logo span::after {
+  content: 'Games';
+  position: absolute;
+  color: var(--CianOscuro);
+  top: -8%;
+  left: 1%;
+  z-index: -2;
+}
+.logo span::before {
+  content: 'Games';
+  position: absolute;
+  color: var(--Rojo);
+  bottom: -15%;
+  right: 1%;
+  z-index: -1;
+}
