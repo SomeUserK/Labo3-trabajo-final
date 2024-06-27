@@ -3,7 +3,8 @@ const games_container = document.getElementById('games-container');
 const txtBusqueda = document.getElementById('barraBusqueda');
 const btnBusqueda = document.getElementById('botonBusqueda');
 
-let _Cooldown = false;
+let _cooldown = false;
+let _page = 1;
 
 function HTMLreplacer(template, data) {
   let html = template;
@@ -29,14 +30,11 @@ async function loadHTMLAsString(url) {
 }
 
 function isOnCooldown() {
-  if (_Cooldown) return true;
-  _Cooldown = true;
-  setTimeout(() => (_Cooldown = false), 5 * 1000);
+  if (_cooldown) return true;
+  _cooldown = true;
+  setTimeout(() => (_cooldown = false), 5 * 1000);
   return false;
 }
-
-// Funcion para buscar juegos al hacer click en buscar
-btnBusqueda.addEventListener('click', async event => {});
 
 async function loadGames(search, page, max, categories) {
   const cardTemplate = await loadHTMLAsString('./src/templates/game-card.html');
@@ -47,7 +45,7 @@ async function loadGames(search, page, max, categories) {
     description: 'Try searching for a game',
     image: './imagenes/no-image.png',
   });
-  games_container.innerHTML = defaultCard;
+  if (page === 1) games_container.innerHTML = defaultCard;
 
   const firstGames = await obtainGames(search, page, max, categories);
 
@@ -64,7 +62,6 @@ async function loadGames(search, page, max, categories) {
 
       if (!game) return '';
       const gameData = extraDatas[index] || {};
-      if (index === 0) console.log(gameData);
 
       const words = gameData.description?.split(' ') || [];
       const stars_rating = Math.floor((game.rating / 5) * 100) + '%';
@@ -80,7 +77,8 @@ async function loadGames(search, page, max, categories) {
       });
     });
 
-    games_container.innerHTML = cards.join('');
+    if (page === 1) games_container.innerHTML = '';
+    games_container.innerHTML += cards.join('');
   }
 }
 
@@ -96,7 +94,7 @@ window.addEventListener('scroll', () => {
 
   // Cargar más juegos
 
-  loadGames(txtBusqueda.value, 1, 20);
+  loadGames(txtBusqueda.value, ++_page, 20);
 });
 
 // Funcion MAIN Auto Ejecutable

@@ -42,7 +42,6 @@ async function _fetchGames(toSearch = '', page = 1, max = 30, categories = []) {
     });
     const json = await response.json();
 
-    console.log('Juegos...', json);
     return json;
   } catch (error) {
     console.error(error);
@@ -135,8 +134,20 @@ export async function obtainGames(search, page, max, categories = []) {
     return null;
   })();
 
+  console.log(
+    'Using cached games at page',
+    page,
+    'with search:',
+    search || null
+  );
   if (cachedGames) return cachedGames;
-  console.log('No hay juegos cacheados');
+  console.log(
+    'Fetching games at page',
+    page,
+    'with search:`',
+    search || null,
+    '`'
+  );
   // En el caso de ser nulo, se vuelve a solicitar la API
   const json = await _fetchGames(search, page, max);
 
