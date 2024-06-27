@@ -38,7 +38,7 @@ btnBusqueda.addEventListener('click', event => {
 });
 
 async function mostrarJuego() {
-  const cardTemplate = await loadHTMLAsString('./src/templates/game-card.html');
+  const cardTemplate = await loadHTMLAsString('/game-card.html');
 
   let defaultCard = HTMLreplacer(cardTemplate, {
     name: 'No games found',
@@ -107,7 +107,7 @@ async function mostrarJuego() {
 (async () => {
   window.scrollTo(0, 0);
 
-  const cardTemplate = await loadHTMLAsString('./src/templates/game-card.html');
+  const cardTemplate = await loadHTMLAsString('/game-card.html');
   let page = 1;
   let isLoadingState = 1;
 
