@@ -65,7 +65,7 @@ async function _fetchOneGame(id) {
         lastUpdate: new Date().toString(),
         all: JSON.stringify(json),
       };
-      localStorage.setItem(
+      saveToLocalStorage(
         _cachePointers.gameWithId(id),
         JSON.stringify(cachedData)
       );
@@ -86,6 +86,28 @@ async function _fetchOneGame(id) {
  * @param {*} max
  * @returns
  */
+//Funcion para Guardar en el local Storage
+function saveToLocalStorage(key, value) {
+  try {
+    // Intenta guardar directamente
+    localStorage.setItem(key, value);
+  } catch (e) {
+    if (e instanceof DOMException && e.name === 'QuotaExceededError') {
+      // Si el almacenamiento está lleno, limpia localStorage y vuelve a intentar
+      console.warn('localStorage está lleno, limpiando...');
+      localStorage.clear(); // Ten cuidado con esta línea, ya que elimina todos los datos
+      try {
+        localStorage.setItem(key, value);
+      } catch (e) {
+        console.error('Error al guardar después de limpiar localStorage', e);
+      }
+    } else {
+      // Si el error es por otra razón, simplemente lánzalo
+      throw e;
+    }
+  }
+}
+
 export async function obtainGames(search, page, max, genres = []) {
   search = (search || '').trim().toLowerCase();
 
@@ -163,7 +185,7 @@ export async function obtainGames(search, page, max, genres = []) {
       search,
       all: JSON.stringify(json),
     };
-    localStorage.setItem(
+    saveToLocalStorage(
       _cachePointers.gamesPage(page, search, genres.join(',')),
       JSON.stringify(dataToCache)
     );
@@ -208,7 +230,7 @@ export async function obtainAGameData(id) {
       lastUpdate: new Date().toString(),
       all: JSON.stringify(json),
     };
-    localStorage.setItem(
+    saveToLocalStorage(
       _cachePointers.gameWithId(json.id),
       JSON.stringify(dataToCache)
     );

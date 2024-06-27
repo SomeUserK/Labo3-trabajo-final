@@ -10,6 +10,10 @@
   --Vino: #8d155e;
 }
 
+main {
+  background-color: var(--AzulOtraVez);
+  color: var(--Blanco);
+}
 /*logo*/
 .logo:hover {
   filter: brightness(0.9);
@@ -114,7 +118,7 @@
 /* Ajusta la altura*/
 
 .carousel-item {
-  height: 800px;
+  height: 500px;
 }
 
 .carousel-item img {

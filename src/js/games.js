@@ -3,6 +3,9 @@ const games_container = document.getElementById('games-container');
 const txtBusqueda = document.getElementById('barraBusqueda');
 const btnBusqueda = document.getElementById('botonBusqueda');
 
+let page = 1;
+let totalPages = 20;
+
 function HTMLreplacer(template, data) {
   let html = template;
   for (const key in data) {
@@ -25,40 +28,52 @@ async function loadHTMLAsString(url) {
     console.error('Error al cargar el archivo HTML:', error);
   }
 }
-
+/////////////////////////////////////////////////////
 // Funcion para buscar juegos al hacer click en buscar
+/////////////////////////////////////////////////////
 btnBusqueda.addEventListener('click', event => {
   event.preventDefault();
   mostrarJuego(true);
 });
 
-async function mostrarJuego(busqueda = false) {
+async function changePage(page) {
+  if (page < 1) {
+    page = 1;
+  } else if (page > totalPages) {
+    page = totalPages;
+  }
+
+  currentPage = page;
+
+  mostrarJuego();
+}
+
+async function mostrarJuego() {
   let games = [];
-  if (busqueda) {
-    const search = txtBusqueda.value;
-    console.log(search);
+  if (txtBusqueda.value.trim() !== '') {
+    const search = txtBusqueda.value.trim();
     games = await obtainGames(search, 1, 20);
   } else {
     games = await obtainGames('', page, 20);
   }
 
   if (!games || !games.results?.length) {
-    games_container.innerHTML = HTMLreplacer(cardTemplate, {
-      name: 'No games found',
-      image: './imagenes/no-image.png',
-    });
+    console.log('No se encontraron resultados');
     return;
   }
 
   const { results } = games;
-
+  console.log(results);
   const extraDataResults = await Promise.allSettled(
     results.map(game => obtainAGameData(game.id))
   );
+  console.log(results);
 
   const extraDatas = extraDataResults.map(result => result.value || null);
+  console.log(results);
 
-  results.map((game, index) => {
+  games_container.innerHTML = '';
+  results.map(game => {
     if (!game) return '';
 
     const htmlContent = `<div class="card">
@@ -86,7 +101,7 @@ async function mostrarJuego(busqueda = false) {
       </section>
     </div>
     `;
-    games_container.innerHTML = htmlContent;
+    games_container.innerHTML += htmlContent;
   });
 
   window.scrollTo(0, 0);
@@ -108,7 +123,7 @@ async function mostrarJuego(busqueda = false) {
     );
     const extraDatas = extraDataResults.map(result => result.value || null);
 
-    let htmlContent = results.forEach((game, index) => {
+    results.forEach((game, index) => {
       if (!game) return '';
       const gameData = extraDatas[index] || {};
 
@@ -195,3 +210,49 @@ async function mostrarJuego(busqueda = false) {
 
   //
 })();
+
+/////////////////////////////////////////////////////
+//Funcion Paginación
+/////////////////////////////////////////////////////
+
+document.addEventListener('DOMContentLoaded', () => {
+  const totalPages = 10; // Supongamos 10 páginas para el ejemplo
+  let currentPage = 1;
+  const paginationContainer = document.querySelector('.pagination');
+
+  function updatePagination() {
+    paginationContainer.innerHTML = ''; // Limpiar la paginación existente
+
+    // Botón "Anterior"
+    const prevLi = document.createElement('li');
+    prevLi.className = 'page-item';
+    prevLi.innerHTML = `<a class="page-link" href="#">Previous</a>`;
+    prevLi.onclick = () => changePage(currentPage - 1);
+    paginationContainer.appendChild(prevLi);
+
+    // Botones de página
+    for (let i = 1; i <= totalPages; i++) {
+      const pageLi = document.createElement('li');
+      pageLi.className = `page-item ${i === currentPage ? 'active' : ''}`;
+      pageLi.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+      pageLi.onclick = () => changePage(i);
+      paginationContainer.appendChild(pageLi);
+    }
+
+    // Botón "Siguiente"
+    const nextLi = document.createElement('li');
+    nextLi.className = 'page-item';
+    nextLi.innerHTML = `<a class="page-link" href="#">Next</a>`;
+    nextLi.onclick = () => changePage(currentPage + 1);
+    paginationContainer.appendChild(nextLi);
+  }
+
+  function changePage(page) {
+    if (page < 1 || page > totalPages) return; // Evitar páginas fuera de rango
+    currentPage = page;
+    updatePagination();
+    // Aquí puedes añadir lógica para actualizar el contenido de la página según currentPage
+  }
+
+  updatePagination(); // Inicializar la paginación
+});
