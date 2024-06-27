@@ -49,3 +49,20 @@ buttonToggle?.addEventListener('click', cambiarModo);
 
   if (!darkMode) cambiarModo();
 })();
+
+// Hace que los checkboxes sean persistentes
+const checkboxes = document.querySelectorAll('.form-check-input');
+const genres = JSON.parse(localStorage.getItem('genres')) || [];
+
+checkboxes.forEach(checkbox => {
+  checkbox.checked = genres.includes(checkbox.id);
+  checkbox.addEventListener('change', () => {
+    if (checkbox.checked) {
+      genres.push(checkbox.id);
+    } else {
+      genres.splice(genres.indexOf(checkbox.id), 1);
+    }
+
+    localStorage.setItem('genres', JSON.stringify(genres));
+  });
+});
