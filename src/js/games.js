@@ -32,7 +32,7 @@ async function loadHTMLAsString(url) {
 function isOnCooldown() {
   if (_cooldown) return true;
   _cooldown = true;
-  setTimeout(() => (_cooldown = false), 5 * 1000);
+  setTimeout(() => (_cooldown = false), 3.5 * 1000);
   return false;
 }
 
@@ -71,6 +71,7 @@ async function loadGames(search, page, max, categories) {
         description: words.slice(0, 30).join(' ') + '...',
         stars_rating: stars_rating,
         image: game.background_image,
+        id: game.id,
         css: `.progress-bar[data-width] {width: ${Math.floor(
           (game.rating / 5) * 100
         )}%; }`,
