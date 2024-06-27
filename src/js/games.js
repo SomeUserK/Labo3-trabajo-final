@@ -54,21 +54,21 @@ async function loadGames(search, page, max) {
   let defaultCard = gameCard({
     name: 'No games found',
     description: 'Try searching for a game',
-    image: './imagenes/no-image.png',
+    background_image: '/imagenes/no-image.png',
   });
   if (page === 1) games_container.innerHTML = defaultCard;
 
   const genres = [
-    document.getElementById('action').checked ? 'action' : '',
-    document.getElementById('adventure').checked ? 'adventure' : '',
-    document.getElementById('sports').checked ? 'sports' : '',
-    document.getElementById('strategy').checked ? 'strategy' : '',
-    document.getElementById('simulation').checked ? 'simulation' : '',
-    document.getElementById('rpg').checked ? 'rpg' : '',
-    document.getElementById('puzzle').checked ? 'puzzle' : '',
-    document.getElementById('horror').checked ? 'horror' : '',
-    document.getElementById('racing').checked ? 'racing' : '',
-  ].filter(genre => genre !== '');
+    document.getElementById('action')?.checked ? 'action' : '',
+    document.getElementById('adventure')?.checked ? 'adventure' : '',
+    document.getElementById('sports')?.checked ? 'sports' : '',
+    document.getElementById('strategy')?.checked ? 'strategy' : '',
+    document.getElementById('simulation')?.checked ? 'simulation' : '',
+    document.getElementById('rpg')?.checked ? 'rpg' : '',
+    document.getElementById('puzzle')?.checked ? 'puzzle' : '',
+    document.getElementById('horror')?.checked ? 'horror' : '',
+    document.getElementById('racing')?.checked ? 'racing' : '',
+  ].filter(genre => !!genre);
 
   const games = await obtainGames(search, page, max, genres);
 
@@ -121,8 +121,6 @@ async function loadGames(search, page, max) {
       return gameCard(game, extraGameData, genres);
     });
 
-    console.log(cards);
-    console.log('Page:', page);
     if (page === 1) {
       games_container.innerHTML = cards.join('');
     } else {

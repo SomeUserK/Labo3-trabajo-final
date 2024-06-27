@@ -6,7 +6,7 @@ const _gamesUrl = new URL('https://api.rawg.io/api/games');
 const _cachePointers = {
   gamesPage: (page = 1, search = '', genres = '') =>
     `games-p_${page}${search ? `-s_${search}` : ''}${
-      genres.length > 0 ? `-g_${genres}` : ''
+      genres ? `-g_${genres}` : ''
     }`,
   gameWithId: n => `game-id_${n}`,
 };
@@ -122,19 +122,14 @@ export async function obtainGames(search, page, max, genres = []) {
      * }
      */
 
-    if (
-      !localStorage.getItem(
-        _cachePointers.gamesPage(page, search, genres.join(','))
-      )
-    )
-      return null;
+    const rawSavedData = localStorage.getItem(
+      _cachePointers.gamesPage(page, search, genres.join(','))
+    );
+
+    if (!rawSavedData) return null;
 
     try {
-      const cachedData = JSON.parse(
-        localStorage.getItem(
-          _cachePointers.gamesPage(page, search, genres.join(','))
-        )
-      );
+      const cachedData = JSON.parse(rawSavedData);
 
       if (
         !cachedData ||
@@ -157,6 +152,7 @@ export async function obtainGames(search, page, max, genres = []) {
     return null;
   })();
 
+  // En el caso de existir juegos cacheados con los parametros exactos, retornar
   if (cachedGames) {
     console.log(
       'Using cached games at page',
@@ -176,8 +172,9 @@ export async function obtainGames(search, page, max, genres = []) {
     'and genres:',
     genres.join(',')
   );
+
   // En el caso de ser nulo, se vuelve a solicitar la API
-  const json = await _fetchGames(search, page, max);
+  const json = await _fetchGames(search, page, max, genres);
 
   if (json?.results?.length > 0) {
     const dataToCache = {
@@ -189,6 +186,8 @@ export async function obtainGames(search, page, max, genres = []) {
       _cachePointers.gamesPage(page, search, genres.join(',')),
       JSON.stringify(dataToCache)
     );
+  } else {
+    console.log('No se encontraron juegos con los parámetros dados');
   }
 
   return json;
