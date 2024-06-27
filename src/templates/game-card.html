@@ -1,30 +1,23 @@
 <div class="col">
-  <style>
-    {css}
-  </style>
   <div class="card" data-bs-theme="dark">
     <img src="{image}" class="card-img-top" alt="{name}" />
     <div class="card-body text-center">
       <h5 class="card-title">{name}</h5>
-     
-      </section>
-      <a href="/game-detail.html?id={id}" class="btn btn-primary">View More</a>
+      <a href="/game-detail.html" class="btn btn-primary">View More</a>
     </div>
     <section class="stars">
       <div class="star">
         <img src="/public/imagenes/dark-stars.png" alt="stars" />
       </div>
-      <div class="progress" >
+      <div class="progress">
         <div
           class="progress-bar bg-warning"
           role="progressbar"
-          data-width = {stars_rating}
           aria-valuenow="25"
           aria-valuemin="0"
           aria-valuemax="100"
         ></div>
       </div>
-      <p>{stars_rating}</p>
     </section>
   </div>
 </div>

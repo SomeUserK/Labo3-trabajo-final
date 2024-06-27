@@ -43,7 +43,7 @@ a {
 .logo::after {
   font-size: 1.3rem;
   top: 60%;
-  left: 42.5%;
+  left: 45%;
 }
 .logo a:hover {
   filter: brightness(0.9);
