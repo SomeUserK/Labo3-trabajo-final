@@ -59,6 +59,18 @@ h3 {
   color: var(--Blanco);
 }
 
+.dark-mode .btn-outline-success {
+  color: var(--Blanco);
+  border: solid 1px var(--CelesteOscuro);
+  background-color: var(--AzulOtraVez);
+}
+
+.dark-mode .form-control {
+  background-color: var(--AzulOtraVez);
+  color: var(--Blanco);
+  border: solid 1px var(--CelesteOscuro);
+}
+
 .NombreJuego {
   font-size: 200%;
   text-align: center;

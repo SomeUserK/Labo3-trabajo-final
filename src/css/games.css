@@ -10,8 +10,9 @@
   --Vino: #8d155e;
 }
 
-h1 {
-  color: var(--AzulOSCURO);
+main {
+  background-color: var(--AzulOtraVez);
+  color: var(--Blanco);
 }
 /*logo*/
 .logo:hover {
@@ -67,19 +68,11 @@ h1 {
   background-color: var(--AzulMarino);
   color: var(--Blanco);
 }
-.dark-mode main h1 {
-  color: var(--Blanco);
-  background-color: var(--AzulOtraVez);
-  margin: 0;
-}
+
 .dark-mode .btn-primary {
   background-color: var(--AzulOtraVez);
   border: solid 1px var(--CelesteOscuro);
   color: white;
-}
-
-.dark-mode .d-flex {
-  background-color: var(--AzulOtraVez);
 }
 
 .dark-mode .btn-outline-success {
