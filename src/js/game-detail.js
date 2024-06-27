@@ -1,4 +1,6 @@
 import { obtainAGameData } from './dataFetcher';
+import { gameDetail } from './templates/game-detail-container';
+const gameContainer = document.getElementById('game-container');
 
 function doError404() {
   const gameContainer = document.getElementsByClassName('contenido')[0];
@@ -26,25 +28,7 @@ function doError404() {
     return;
   }
 
-  const gameContainer = document.getElementsByClassName('contenido')[0];
+  console.log(gameData);
 
-  // gameContainer.innerHTML = `
-  //   <h1>${gameData.name}</h1>
-  //   <div class="row">
-  //     <div class="col-12 col-lg-6">
-  //       <img src="${gameData.background_image}" class="img-fluid" alt="${
-  //   gameData.name
-  // }">
-  //     </div>
-  //     <div class="col-12 col-lg-6">
-  //       <p>${gameData.description}</p>
-  //       <p>Rating: ${gameData.rating}</p>
-  //       <p>Released: ${gameData.released}</p>
-  //       <p>Genres: ${gameData.genres.map(genre => genre.name).join(', ')}</p>
-  //       <p>Platforms: ${gameData.platforms
-  //         .map(platform => platform.platform.name)
-  //         .join(', ')}</p>
-  //     </div>
-  //   </div>
-  // `;
+  gameContainer.innerHTML = gameDetail(gameData);
 })();

@@ -3,7 +3,7 @@ export const gameCard = (game, extraGameData, genres) => `<div class="card">
         
         <img src="${game.background_image}" class="card-img-top" alt="${
   game.name
-}" />
+}" alt="${game.name}" />
       </div>
         <div class="card-body text-center">
           <h5 class="card-title text-center">${game.name}</h5>
