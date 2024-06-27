@@ -1,5 +1,7 @@
 import { obtainGames, obtainAGameData } from '/src/js/dataFetcher.js';
 const games_container = document.getElementById('games-container');
+const txtBusqueda = document.getElementById('barraBusqueda');
+const btnBusqueda = document.getElementById('botonBusqueda');
 
 function HTMLreplacer(template, data) {
   let html = template;
@@ -23,6 +25,51 @@ async function loadHTMLAsString(url) {
     console.error('Error al cargar el archivo HTML:', error);
   }
 }
+
+// Funcion para buscar juegos al hacer click en buscar
+btnBusqueda.addEventListener('click', async event => {
+  event.preventDefault();
+
+  const cardTemplate = await loadHTMLAsString('./src/templates/game-card.html');
+
+  const search = txtBusqueda.value;
+  const games = await obtainGames(search, 1, 20);
+
+  if (!games || !games.results?.length) {
+    games_container.innerHTML = HTMLreplacer(cardTemplate, {
+      name: 'No games found',
+      description: 'Try searching for a game',
+      image: './imagenes/no-image.png',
+    });
+    return;
+  }
+
+  const { results } = games;
+
+  const extraDataResults = await Promise.allSettled(
+    results.map(game => obtainAGameData(game.id))
+  );
+
+  const extraDatas = extraDataResults.map(result => result.value || null);
+
+  const cards = results.map((game, index) => {
+    if (!game) return '';
+    const gameData = extraDatas[index] || {};
+
+    const words = gameData.description?.split(' ') || [];
+
+    return HTMLreplacer(cardTemplate, {
+      name: game.name,
+      description: words.slice(0, 30).join(' ') + '...',
+      rating: game.rating,
+      image: game.background_image,
+    });
+  });
+
+  games_container.innerHTML = cards.join('');
+
+  window.scrollTo(0, 0);
+});
 
 (async () => {
   window.scrollTo(0, 0);
