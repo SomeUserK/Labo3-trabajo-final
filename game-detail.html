@@ -209,7 +209,7 @@
               </ul>
             </li>
           </ul>
-          <form class="d-flex" role="search">
+          <form class="d-flex" role="search" method="get" action="/games.html">
             <!--Barra busqueda Id = barraBusqueda-->
             <input
               class="form-control me-2"
@@ -217,6 +217,7 @@
               placeholder="Search for a game"
               aria-label="Search"
               id="barraBusqueda"
+              name="search"
             />
             <!--Boton busqueda Id = botonBusqueda-->
             <button
@@ -231,6 +232,7 @@
       </div>
     </nav>
 
+    <!-- Contenido -->
     <div class="InformacionDelJuego">
       <div class="contenido">
         <div class="imagen">
@@ -371,6 +373,8 @@
 
     <!-- Scripts -->
     <script type="module" src="/src/js/all.js"></script>
+    <script type="module" src="/src/js/game-detail.js"></script>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
