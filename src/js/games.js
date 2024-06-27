@@ -57,11 +57,13 @@ async function loadHTMLAsString(url) {
       if (index === 0) console.log(gameData);
 
       const words = gameData.description?.split(' ') || [];
+      const stars_rating = Math.floor((game.rating / 5) * 100) + '%';
 
       return HTMLreplacer(cardTemplate, {
         name: game.name,
         description: words.slice(0, 30).join(' ') + '...',
         rating: game.rating,
+        stars_rating: stars_rating,
         image: game.background_image,
       });
     });

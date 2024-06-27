@@ -3,33 +3,25 @@
     <img src="{image}" class="card-img-top" alt="{name}" />
     <div class="card-body text-center">
       <h5 class="card-title">{name}</h5>
-      <div class="img-overlay">
-        <img
-          src="public/imagenes/steam.png"
-          class="img-chiquita"
-          alt="Steam"
-          width="20"
-        />
-      </div>
-      <img
-        src="public/imagenes/playstation-logotype.png"
-        class="img-chiquita"
-        alt="PlayStation"
-        width="20"
-      />
-      <img
-        src="public/imagenes/xbox-logo.png"
-        class="img-chiquita"
-        alt="Xbox"
-        width="20"
-      />
-      <img
-        src="public/imagenes/play-store.png"
-        class="img-chiquita"
-        alt="Playstore"
-        width="20"
-      />
+     
+      </section>
       <a href="/game-detail.html" class="btn btn-primary">View More</a>
     </div>
+    <section class="stars">
+      <div class="star">
+        <img src="/public/imagenes/dark-stars.png" alt="stars" />
+      </div>
+      <div class="progress" >
+        <div
+          class="progress-bar bg-warning"
+          role="progressbar"
+          data-width = {stars_rating}
+          aria-valuenow="25"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        ></div>
+      </div>
+      <p>{stars_rating}</p>
+    </section>
   </div>
 </div>
