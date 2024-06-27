@@ -11,9 +11,14 @@ const darkDropdown = document.querySelector('[data-bs-theme="dark"]');
 const buttonToggle = document.querySelector('#toggleMode');
 const toggleIcon = document.querySelector('.bi-toggle-off');
 const eyeIcon = document.querySelector('.bi-eye');
+let isDarkMode = true;
 
-// Este archivo se carga en todas las páginas, por eso el ?
-buttonToggle?.addEventListener('click', () => {
+const cambiarModo = () => {
+  isDarkMode = !isDarkMode;
+
+  // Cambia el valor de la variable dark-mode en localStorage
+  localStorage.setItem('dark-mode', isDarkMode + '');
+
   // Cambia la clase para cambiar el tema del body
   body.classList.toggle('dark-mode');
   body.classList.toggle('light-mode');
@@ -33,4 +38,14 @@ buttonToggle?.addEventListener('click', () => {
 
   eyeIcon.classList.toggle('bi-eye-fill');
   eyeIcon.classList.toggle('bi-eye');
-});
+};
+
+// Este archivo se carga en todas las páginas, por eso el ?
+buttonToggle?.addEventListener('click', cambiarModo);
+
+(() => {
+  // Obtiene el valor de la variable dark-mode en localStorage
+  const darkMode = localStorage.getItem('dark-mode') === 'true';
+
+  if (!darkMode) cambiarModo();
+})();
