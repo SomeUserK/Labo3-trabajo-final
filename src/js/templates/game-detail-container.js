@@ -18,14 +18,15 @@ export const gameDetail = (gameData = {}) => `
             </div>
             <div class="detalles-fila">
               <span
-                ><strong>Platforms:</strong> Nintendo Switch, Xbox One, PS Vita,
-                PC, macOS, Linux, PlayStation 4</span
+                ><strong>Platforms:</strong> ${gameData.platforms
+                  ?.map(data => data.platform?.name)
+                  ?.join(', ')}</span
               >
             </div>
             <div class="detalles-fila">
               <span
-                ><strong>Stores:</strong> ${gameData.metacritic_platforms
-                  ?.map(data => data.platform?.name)
+                ><strong>Stores:</strong> ${gameData.stores
+                  ?.map(data => data.store?.name)
                   ?.join(', ')}</span
               >
             </div>
