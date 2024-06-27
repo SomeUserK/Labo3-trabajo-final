@@ -4,12 +4,13 @@ const { VITE_SECRET_KEY: apiKey } = import.meta.env;
 const _gamesUrl = new URL('https://api.rawg.io/api/games');
 // Punteros para el cache
 const _cachePointers = {
-  firstLandingGames: (page = 1) => `games-${page}`,
-  gameWithId: n => `game-${n}`,
+  gamesPage: (page = 1, search = '') =>
+    `games-p_${page}${search ? search : `-s_${search}`}`,
+  gameWithId: n => `game-id_${n}`,
 };
 // Tiempo de vida de cada cache en minutos
 const _cacheExpireTime = {
-  firstLandingGames: 30,
+  gamesPage: 30,
   eachGame: 60,
 };
 
@@ -87,38 +88,40 @@ async function _fetchOneGame(id) {
 
 /**
  *
- * @param {*} toSearch
+ * @param {*} search
  * @param {*} page
  * @param {*} max
  * @returns
  */
-export async function obtainGames(...args) {
-  const page = args[1];
-
+export async function obtainGames(search, page, max) {
   // Obtiene los juegos cacheados para no volver a solicitar la api
   const cachedGames = (() => {
     const now = new Date();
     /** Formato
      * games: {
      *  lastUpdate: 'new Date()',
-     *  search: 'toSearch',
+     *  search: 'search',
      *  all: ...
      * }
      */
 
     try {
       const cachedData = JSON.parse(
-        localStorage.getItem(_cachePointers.firstLandingGames(page))
+        localStorage.getItem(_cachePointers.gamesPage(page, search))
       );
 
-      if (!cachedData || !cachedData.lastUpdate || !cachedData.all) return null;
-
-      if (cachedData.search !== args[0]) return null;
+      if (
+        !cachedData ||
+        !cachedData.lastUpdate ||
+        !cachedData.all ||
+        cachedData.search !== search
+      )
+        return null;
 
       // Revisa que el cache no haya expirado (pasando 30 minutos)
       const lastUpdated = new Date(cachedData.lastUpdate);
 
-      if (now - lastUpdated > _cacheExpireTime.firstLandingGames * 1000 * 60)
+      if (now - lastUpdated > _cacheExpireTime.gamesPage * 1000 * 60)
         return null;
 
       return JSON.parse(cachedData.all);
@@ -131,16 +134,16 @@ export async function obtainGames(...args) {
   if (cachedGames) return cachedGames;
   console.log('No hay juegos cacheados');
   // En el caso de ser nulo, se vuelve a solicitar la API
-  const json = await _fetchGames(...args);
+  const json = await _fetchGames(search, page, max);
 
-  if (json.results?.length > 0) {
+  if (json?.results?.length > 0) {
     const dataToCache = {
       lastUpdate: new Date().toString(),
-      search: args[0],
+      search,
       all: JSON.stringify(json),
     };
     localStorage.setItem(
-      _cachePointers.firstLandingGames(page),
+      _cachePointers.gamesPage(page, search),
       JSON.stringify(dataToCache)
     );
   }
@@ -153,13 +156,13 @@ export async function obtainGames(...args) {
  * @param {*} id
  * @returns
  */
-export async function obtainAGameData(...args) {
+export async function obtainAGameData(id) {
   const cachedGame = (() => {
     const now = new Date();
 
     try {
       const cachedData = JSON.parse(
-        localStorage.getItem(_cachePointers.gameWithId(args[0]))
+        localStorage.getItem(_cachePointers.gameWithId(id))
       );
 
       if (!cachedData || !cachedData.lastUpdate || !cachedData.all) return null;
@@ -177,7 +180,7 @@ export async function obtainAGameData(...args) {
 
   if (cachedGame) return cachedGame;
   // En el caso de ser nulo, se vuelve a solicitar la API
-  const json = await _fetchOneGame(...args);
+  const json = await _fetchOneGame(id);
 
   if (json) {
     const dataToCache = {
