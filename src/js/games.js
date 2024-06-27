@@ -38,6 +38,15 @@ btnBusqueda.addEventListener('click', event => {
 });
 
 async function mostrarJuego() {
+  const cardTemplate = await loadHTMLAsString('./src/templates/game-card.html');
+
+  let defaultCard = HTMLreplacer(cardTemplate, {
+    name: 'No games found',
+    description: 'Try searching for a game',
+    image: './imagenes/no-image.png',
+  });
+  games_container.innerHTML = defaultCard;
+
   let games = [];
   if (txtBusqueda.value.trim() !== '') {
     const search = txtBusqueda.value.trim();
@@ -46,56 +55,53 @@ async function mostrarJuego() {
     games = await obtainGames('', page, 20);
   }
 
-  if (!games || !games.results?.length) {
-    console.log('No se encontraron resultados');
-    return;
-  }
-
   const { results } = games;
-  console.log(results);
+
   const extraDataResults = await Promise.allSettled(
     results.map(game => obtainAGameData(game.id))
   );
   console.log(results);
 
   const extraDatas = extraDataResults.map(result => result.value || null);
-  console.log(results);
 
-  games_container.innerHTML = '';
-  results.map(game => {
-    if (!game) return '';
+  if (results && results.length > 0) {
+    //quita la plantilla por defecto
+    games_container.innerHTML = '';
 
-    const htmlContent = `
-    <div class="card">
-      <div class="card-img">
-        <img src="${game.background_image}" class="card-img-top" alt="${
-      game.name
-    }" />
-      </div>
-      <div class="card-body text-center">
-        <h5 class="card-title">${game.name}</h5>
-        <a href="/game-detail.html" class="btn btn-primary">View More</a>
-      </div>
-      <section class="stars">
-        <div class="star">
-          <img src="/public/imagenes/dark-stars.png" alt="stars" />
+    results.map(game => {
+      if (!game) return '';
+
+      const htmlContent = `
+      <div class="card">
+        <div class="card-img">
+          <img src="${game.background_image}" class="card-img-top" alt="${
+        game.name
+      }" />
         </div>
-        <div class="progress">
-          <div
-            class="progress-bar bg-warning"
-            role="progressbar"
-            style="width: ${Math.floor((game.rating / 5) * 100) + '%'};"
-            aria-valuenow="25"
-            aria-valuemin="0"
-            aria-valuemax="100"
-          ></div>
+        <div class="card-body text-center">
+          <h5 class="card-title">${game.name}</h5>
+          <a href="/game-detail.html" class="btn btn-primary">View More</a>
         </div>
-      </section>
-    </div>
-    `;
-    games_container.innerHTML += htmlContent;
-  });
-
+        <section class="stars">
+          <div class="star">
+            <img src="/public/imagenes/dark-stars.png" alt="stars" />
+          </div>
+          <div class="progress">
+            <div
+              class="progress-bar bg-warning"
+              role="progressbar"
+              style="width: ${Math.floor((game.rating / 5) * 100) + '%'};"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+        </section>
+      </div>
+      `;
+      games_container.innerHTML += htmlContent;
+    });
+  }
   window.scrollTo(0, 0);
 }
 (async () => {
@@ -105,10 +111,18 @@ async function mostrarJuego() {
   let page = 1;
   let isLoadingState = 1;
 
+  const defaultCard = HTMLreplacer(cardTemplate, {
+    name: 'No games found',
+    description: 'Try searching for a game',
+    image: './imagenes/no-image.png',
+  });
+  games_container.innerHTML = defaultCard;
+
   const firstGames = await obtainGames('', page, 20);
 
   // En el caso de poder obtener las cartas, se insertan en el contenedor
   if (firstGames && firstGames.results?.length > 0) {
+    games_container.innerHTML = '';
     const { results } = firstGames;
     const extraDataResults = await Promise.allSettled(
       results.map(game => obtainAGameData(game.id))
@@ -242,61 +256,7 @@ async function mostrarJuego() {
         games_container.innerHTML += newCards.join('');
       });
     });
-  } else {
-    // TODO Que la carta default sea directamente un carta vacia cargando
-    const defaultCard = HTMLreplacer(cardTemplate, {
-      name: 'No games found',
-      description: 'Try searching for a game',
-      image: './imagenes/no-image.png',
-    });
-    games_container.innerHTML = defaultCard;
   }
 
   //
 })();
-
-/////////////////////////////////////////////////////
-//Funcion Paginación
-/////////////////////////////////////////////////////
-
-document.addEventListener('DOMContentLoaded', () => {
-  const totalPages = 10; // Supongamos 10 páginas para el ejemplo
-  let currentPage = 1;
-  const paginationContainer = document.querySelector('.pagination');
-
-  function updatePagination() {
-    paginationContainer.innerHTML = ''; // Limpiar la paginación existente
-
-    // Botón "Anterior"
-    const prevLi = document.createElement('li');
-    prevLi.className = 'page-item';
-    prevLi.innerHTML = `<a class="page-link" href="#">Previous</a>`;
-    prevLi.onclick = () => changePage(currentPage - 1);
-    paginationContainer.appendChild(prevLi);
-
-    // Botones de página
-    for (let i = 1; i <= totalPages; i++) {
-      const pageLi = document.createElement('li');
-      pageLi.className = `page-item ${i === currentPage ? 'active' : ''}`;
-      pageLi.innerHTML = `<a class="page-link" href="#">${i}</a>`;
-      pageLi.onclick = () => changePage(i);
-      paginationContainer.appendChild(pageLi);
-    }
-
-    // Botón "Siguiente"
-    const nextLi = document.createElement('li');
-    nextLi.className = 'page-item';
-    nextLi.innerHTML = `<a class="page-link" href="#">Next</a>`;
-    nextLi.onclick = () => changePage(currentPage + 1);
-    paginationContainer.appendChild(nextLi);
-  }
-
-  function changePage(page) {
-    if (page < 1 || page > totalPages) return; // Evitar páginas fuera de rango
-    currentPage = page;
-    updatePagination();
-    // Aquí puedes añadir lógica para actualizar el contenido de la página según currentPage
-  }
-
-  updatePagination(); // Inicializar la paginación
-});
