@@ -31,22 +31,11 @@ async function loadHTMLAsString(url) {
 /////////////////////////////////////////////////////
 // Funcion para buscar juegos al hacer click en buscar
 /////////////////////////////////////////////////////
+
 btnBusqueda.addEventListener('click', event => {
   event.preventDefault();
   mostrarJuego(true);
 });
-
-async function changePage(page) {
-  if (page < 1) {
-    page = 1;
-  } else if (page > totalPages) {
-    page = totalPages;
-  }
-
-  currentPage = page;
-
-  mostrarJuego();
-}
 
 async function mostrarJuego() {
   let games = [];
@@ -76,10 +65,13 @@ async function mostrarJuego() {
   results.map(game => {
     if (!game) return '';
 
-    const htmlContent = `<div class="card">
-      <img src="${game.background_image}" class="card-img-top" alt="${
+    const htmlContent = `
+    <div class="card">
+      <div class="card-img">
+        <img src="${game.background_image}" class="card-img-top" alt="${
       game.name
     }" />
+      </div>
       <div class="card-body text-center">
         <h5 class="card-title">${game.name}</h5>
         <a href="/game-detail.html" class="btn btn-primary">View More</a>
@@ -123,22 +115,28 @@ async function mostrarJuego() {
     );
     const extraDatas = extraDataResults.map(result => result.value || null);
 
+    console.log(results);
     results.forEach((game, index) => {
       if (!game) return '';
       const gameData = extraDatas[index] || {};
 
+      const genres = gameData.genres?.map(genre => genre.name) || [];
       const htmlContent = `<div class="card">
+        <div class="card-img">
+        
         <img src="${game.background_image}" class="card-img-top" alt="${
         game.name
       }" />
+      </div>
         <div class="card-body text-center">
-          <h5 class="card-title">${game.name}</h5>
-          <a href="/game-detail.html" class="btn btn-primary">View More</a>
-        </div>
-        <section class="stars">
+          <h5 class="card-title text-center">${game.name}</h5>
+          <div class="card-informacionOculta">
+          </div>
+          <section class="stars text-start">
           <div class="star">
             <img src="/public/imagenes/dark-stars.png" alt="stars" />
           </div>
+          <div class="d-flex justify-content-between">  
           <div class="progress">
             <div
               class="progress-bar bg-warning"
@@ -148,8 +146,18 @@ async function mostrarJuego() {
               aria-valuemin="0"
               aria-valuemax="100"
             ></div>
+            <p class="text-warning">${game.rating}</p>
+
           </div>
+
+          </div>
+          
         </section>
+
+        <p class="text-start">${genres.join(', ')}</p>
+        <a href="/game-detail.html" class="btn btn-primary">View More</a>
+        </div>
+        
       </div>
       `;
       games_container.innerHTML += htmlContent;
@@ -187,12 +195,48 @@ async function mostrarJuego() {
 
           const words = gameData.description_raw?.split(' ') || [];
 
-          return HTMLreplacer(cardTemplate, {
-            name: game.name,
-            description: words.slice(0, 36).join(' ') + '...',
-            rating: game.rating,
-            image: game.background_image,
-          });
+          const genres = gameData.genres?.map(genre => genre.name) || [];
+
+          const htmlContent = `<div class="card">
+              <div class="card-img">
+              
+              <img src="${game.background_image}" class="card-img-top" alt="${
+            game.name
+          }" />
+            </div>
+              <div class="card-body text-center">
+                <h5 class="card-title text-center">${game.name}</h5>
+                <div class="card-informacionOculta">
+                </div>
+                <section class="stars text-start">
+                <div class="star">
+                  <img src="/public/imagenes/dark-stars.png" alt="stars" />
+                </div>
+                <div class="d-flex justify-content-between">  
+                <div class="progress">
+                  <div
+                    class="progress-bar bg-warning"
+                    role="progressbar"
+                    style="width: ${Math.floor((game.rating / 5) * 100) + '%'};"
+                    aria-valuenow="25"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                  <p class="text-warning">${game.rating}</p>
+
+                </div>
+
+                </div>
+                
+              </section>
+
+              <p class="text-start">${genres.join(', ')}</p>
+              <a href="/game-detail.html" class="btn btn-primary">View More</a>
+              </div>
+              
+            </div>
+            `;
+          return htmlContent;
         });
 
         games_container.innerHTML += newCards.join('');
