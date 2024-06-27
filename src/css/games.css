@@ -10,6 +10,10 @@
   --Vino: #8d155e;
 }
 
+main {
+  background-color: var(--AzulOtraVez);
+  color: var(--Blanco);
+}
 /*logo*/
 .logo:hover {
   filter: brightness(0.9);
@@ -36,7 +40,15 @@
   border: solid 1px black;
   color: black;
 }
-
+.card-img {
+  height: 200px;
+  object-fit: cover;
+}
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .d-flex {
   color: black;
 }
@@ -61,10 +73,6 @@
   background-color: var(--AzulOtraVez);
   border: solid 1px var(--CelesteOscuro);
   color: white;
-}
-
-.dark-mode .d-flex {
-  background-color: var(--AzulOtraVez);
 }
 
 .dark-mode .btn-outline-success {
@@ -103,23 +111,13 @@
   background-color: #f0f0f0;
 }
 
-/*Carousel*/
-
-.carousel-inner {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
-
-/* Ajusta la altura*/
-
-.carousel-item {
-  height: 800px;
+/* Estilos para el banner de imágenes deslizantes */
+#carouselExampleIndicators {
+  max-width: 100%;
+  margin: auto;
 }
 
 .carousel-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
+  height: auto;
+  max-width: 100%;
 }

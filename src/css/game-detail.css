@@ -18,7 +18,8 @@ body {
   padding: 0;
 }
 
-h2, h3 {
+h2,
+h3 {
   color: var(--Cian);
 }
 
@@ -26,7 +27,7 @@ h2, h3 {
   max-width: 1300px;
   margin: auto;
   padding: 20px;
-  background-color: transparent; 
+  background-color: transparent;
 }
 
 .contenido {
@@ -51,10 +52,23 @@ h2, h3 {
 
 .texto {
   flex: 2 1 600px;
+  color: black;
 }
 
-.dark-mode .texto{
+.dark-mode .texto {
   color: var(--Blanco);
+}
+
+.dark-mode .btn-outline-success {
+  color: var(--Blanco);
+  border: solid 1px var(--CelesteOscuro);
+  background-color: var(--AzulOtraVez);
+}
+
+.dark-mode .form-control {
+  background-color: var(--AzulOtraVez);
+  color: var(--Blanco);
+  border: solid 1px var(--CelesteOscuro);
 }
 
 .NombreJuego {
@@ -126,7 +140,6 @@ h2, h3 {
   border-radius: 10px;
 }
 
-
 .text-center {
   text-align: center;
 }
@@ -136,13 +149,15 @@ h2, h3 {
   flex-wrap: wrap;
 }
 
-.img, .vid {
+.img,
+.vid {
   flex: 1;
   padding: 10px;
 }
 
 @media (max-width: 768px) {
-  .img, .vid {
+  .img,
+  .vid {
     flex-basis: 100%;
   }
 }
@@ -152,10 +167,8 @@ h2, h3 {
 }
 
 .vid {
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
-
-
 
 /*Logo*/
 .logo {

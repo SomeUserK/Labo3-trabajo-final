@@ -6,7 +6,7 @@ const _gamesUrl = new URL('https://api.rawg.io/api/games');
 const _cachePointers = {
   gamesPage: (page = 1, search = '', genres = '') =>
     `games-p_${page}${search ? `-s_${search}` : ''}${
-      genres.length > 0 ? `-g_${genres}` : ''
+      genres ? `-g_${genres}` : ''
     }`,
   gameWithId: n => `game-id_${n}`,
 };
@@ -65,7 +65,7 @@ async function _fetchOneGame(id) {
         lastUpdate: new Date().toString(),
         all: JSON.stringify(json),
       };
-      localStorage.setItem(
+      saveToLocalStorage(
         _cachePointers.gameWithId(id),
         JSON.stringify(cachedData)
       );
@@ -86,6 +86,28 @@ async function _fetchOneGame(id) {
  * @param {*} max
  * @returns
  */
+//Funcion para Guardar en el local Storage
+function saveToLocalStorage(key, value) {
+  try {
+    // Intenta guardar directamente
+    localStorage.setItem(key, value);
+  } catch (e) {
+    if (e instanceof DOMException && e.name === 'QuotaExceededError') {
+      // Si el almacenamiento está lleno, limpia localStorage y vuelve a intentar
+      console.warn('localStorage está lleno, limpiando...');
+      localStorage.clear(); // Ten cuidado con esta línea, ya que elimina todos los datos
+      try {
+        localStorage.setItem(key, value);
+      } catch (e) {
+        console.error('Error al guardar después de limpiar localStorage', e);
+      }
+    } else {
+      // Si el error es por otra razón, simplemente lánzalo
+      throw e;
+    }
+  }
+}
+
 export async function obtainGames(search, page, max, genres = []) {
   search = (search || '').trim().toLowerCase();
 
@@ -100,19 +122,14 @@ export async function obtainGames(search, page, max, genres = []) {
      * }
      */
 
-    if (
-      !localStorage.getItem(
-        _cachePointers.gamesPage(page, search, genres.join(','))
-      )
-    )
-      return null;
+    const rawSavedData = localStorage.getItem(
+      _cachePointers.gamesPage(page, search, genres.join(','))
+    );
+
+    if (!rawSavedData) return null;
 
     try {
-      const cachedData = JSON.parse(
-        localStorage.getItem(
-          _cachePointers.gamesPage(page, search, genres.join(','))
-        )
-      );
+      const cachedData = JSON.parse(rawSavedData);
 
       if (
         !cachedData ||
@@ -135,6 +152,7 @@ export async function obtainGames(search, page, max, genres = []) {
     return null;
   })();
 
+  // En el caso de existir juegos cacheados con los parametros exactos, retornar
   if (cachedGames) {
     console.log(
       'Using cached games at page',
@@ -154,8 +172,9 @@ export async function obtainGames(search, page, max, genres = []) {
     'and genres:',
     genres.join(',')
   );
+
   // En el caso de ser nulo, se vuelve a solicitar la API
-  const json = await _fetchGames(search, page, max);
+  const json = await _fetchGames(search, page, max, genres);
 
   if (json?.results?.length > 0) {
     const dataToCache = {
@@ -163,10 +182,12 @@ export async function obtainGames(search, page, max, genres = []) {
       search,
       all: JSON.stringify(json),
     };
-    localStorage.setItem(
+    saveToLocalStorage(
       _cachePointers.gamesPage(page, search, genres.join(',')),
       JSON.stringify(dataToCache)
     );
+  } else {
+    console.log('No se encontraron juegos con los parámetros dados');
   }
 
   return json;
@@ -208,7 +229,7 @@ export async function obtainAGameData(id) {
       lastUpdate: new Date().toString(),
       all: JSON.stringify(json),
     };
-    localStorage.setItem(
+    saveToLocalStorage(
       _cachePointers.gameWithId(json.id),
       JSON.stringify(dataToCache)
     );
