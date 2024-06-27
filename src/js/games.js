@@ -58,15 +58,128 @@ async function loadGames(search, page, max) {
   });
   if (page === 1) games_container.innerHTML = defaultCard;
 
+  /*
+    <li>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="action"
+                    />
+                    <label class="form-check-label" for="action">Action</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="adventure"
+                    />
+                    <label class="form-check-label" for="adventure"
+                      >Adventure</label
+                    >
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="indie"
+                    />
+                    <label class="form-check-label" for="sports">Indie</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="strategy"
+                    />
+                    <label class="form-check-label" for="strategy"
+                      >Strategy</label
+                    >
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="simulation"
+                    />
+                    <label class="form-check-label" for="simulation"
+                      >Simulation</label
+                    >
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="rpg"
+                    />
+                    <label class="form-check-label" for="rpg">RPG</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="puzzle"
+                    />
+                    <label class="form-check-label" for="puzzle">Puzzle</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="shooter"
+                    />
+                    <label class="form-check-label" for="shooter"
+                      >Shooter</label
+                    >
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="racing"
+                    />
+                    <label class="form-check-label" for="racing">Racing</label>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+*/
+
   const genres = [
     document.getElementById('action')?.checked ? 'action' : '',
     document.getElementById('adventure')?.checked ? 'adventure' : '',
-    document.getElementById('sports')?.checked ? 'sports' : '',
+    document.getElementById('indie')?.checked ? 'indie' : '',
     document.getElementById('strategy')?.checked ? 'strategy' : '',
     document.getElementById('simulation')?.checked ? 'simulation' : '',
     document.getElementById('rpg')?.checked ? 'rpg' : '',
     document.getElementById('puzzle')?.checked ? 'puzzle' : '',
-    document.getElementById('horror')?.checked ? 'horror' : '',
+    document.getElementById('shooter')?.checked ? 'shooter' : '',
     document.getElementById('racing')?.checked ? 'racing' : '',
   ].filter(genre => !!genre);
 
