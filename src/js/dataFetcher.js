@@ -4,8 +4,10 @@ const { VITE_SECRET_KEY: apiKey } = import.meta.env;
 const _gamesUrl = new URL('https://api.rawg.io/api/games');
 // Punteros para el cache
 const _cachePointers = {
-  gamesPage: (page = 1, search = '') =>
-    `games-p_${page}${search ? `-s_${search}` : ''}`,
+  gamesPage: (page = 1, search = '', genres = '') =>
+    `games-p_${page}${search ? `-s_${search}` : ''}${
+      genres.length > 0 ? `-g_${genres}` : ''
+    }`,
   gameWithId: n => `game-id_${n}`,
 };
 // Tiempo de vida de cada cache en minutos
@@ -14,7 +16,7 @@ const _cacheExpireTime = {
   eachGame: 60,
 };
 
-async function _fetchGames(toSearch = '', page = 1, max = 30, categories = []) {
+async function _fetchGames(toSearch = '', page = 1, max = 30, genres = []) {
   // Copio la URL para no modificar la original
   const gamesUrl = new URL(_gamesUrl);
   // Extraigo los searchParams
@@ -27,6 +29,7 @@ async function _fetchGames(toSearch = '', page = 1, max = 30, categories = []) {
   searchParams.append('page', page);
   searchParams.append('page_size', max);
   if (toSearch.trim().length > 0) searchParams.append('search', toSearch);
+  if (genres.length > 0) searchParams.append('genres', genres.join(','));
 
   try {
     const response = await fetch(gamesUrl, {
@@ -91,7 +94,7 @@ async function _fetchOneGame(id) {
  * @param {*} max
  * @returns
  */
-export async function obtainGames(search, page, max, categories = []) {
+export async function obtainGames(search, page, max, genres = []) {
   search = (search || '').trim().toLowerCase();
 
   // Obtiene los juegos cacheados para no volver a solicitar la api
@@ -105,12 +108,18 @@ export async function obtainGames(search, page, max, categories = []) {
      * }
      */
 
-    if (!localStorage.getItem(_cachePointers.gamesPage(page, search)))
+    if (
+      !localStorage.getItem(
+        _cachePointers.gamesPage(page, search, genres.join(','))
+      )
+    )
       return null;
 
     try {
       const cachedData = JSON.parse(
-        localStorage.getItem(_cachePointers.gamesPage(page, search))
+        localStorage.getItem(
+          _cachePointers.gamesPage(page, search, genres.join(','))
+        )
       );
 
       if (
@@ -134,19 +143,24 @@ export async function obtainGames(search, page, max, categories = []) {
     return null;
   })();
 
-  console.log(
-    'Using cached games at page',
-    page,
-    'with search:',
-    search || null
-  );
-  if (cachedGames) return cachedGames;
+  if (cachedGames) {
+    console.log(
+      'Using cached games at page',
+      page,
+      'with search:',
+      search || null,
+      'and genres:',
+      genres.join(',')
+    );
+    return cachedGames;
+  }
   console.log(
     'Fetching games at page',
     page,
-    'with search:`',
+    'with search:',
     search || null,
-    '`'
+    'and genres:',
+    genres.join(',')
   );
   // En el caso de ser nulo, se vuelve a solicitar la API
   const json = await _fetchGames(search, page, max);
@@ -158,7 +172,7 @@ export async function obtainGames(search, page, max, categories = []) {
       all: JSON.stringify(json),
     };
     localStorage.setItem(
-      _cachePointers.gamesPage(page, search),
+      _cachePointers.gamesPage(page, search, genres.join(',')),
       JSON.stringify(dataToCache)
     );
   }

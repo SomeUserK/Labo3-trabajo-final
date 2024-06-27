@@ -36,7 +36,7 @@ function isOnCooldown() {
   return false;
 }
 
-async function loadGames(search, page, max, categories) {
+async function loadGames(search, page, max) {
   const cardTemplate = await loadHTMLAsString('./src/templates/game-card.html');
 
   // TODO Que la carta default sea directamente un carta vacia cargando
@@ -47,7 +47,19 @@ async function loadGames(search, page, max, categories) {
   });
   if (page === 1) games_container.innerHTML = defaultCard;
 
-  const firstGames = await obtainGames(search, page, max, categories);
+  const genres = [
+    document.getElementById('action').checked ? 'action' : '',
+    document.getElementById('adventure').checked ? 'adventure' : '',
+    document.getElementById('sports').checked ? 'sports' : '',
+    document.getElementById('strategy').checked ? 'strategy' : '',
+    document.getElementById('simulation').checked ? 'simulation' : '',
+    document.getElementById('rpg').checked ? 'rpg' : '',
+    document.getElementById('puzzle').checked ? 'puzzle' : '',
+    document.getElementById('horror').checked ? 'horror' : '',
+    document.getElementById('racing').checked ? 'racing' : '',
+  ].filter(genre => genre !== '');
+
+  const firstGames = await obtainGames(search, page, max, genres);
 
   // En el caso de poder obtener las cartas, se insertan en el contenedor
   if (firstGames && firstGames.results?.length > 0) {

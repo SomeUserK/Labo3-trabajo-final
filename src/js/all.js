@@ -45,7 +45,7 @@ buttonToggle?.addEventListener('click', cambiarModo);
 
 (() => {
   // Obtiene el valor de la variable dark-mode en localStorage
-  const darkMode = localStorage.getItem('dark-mode') === 'true';
+  const darkMode = (localStorage.getItem('dark-mode') ?? 'true') === 'true';
 
   if (!darkMode) cambiarModo();
 })();
