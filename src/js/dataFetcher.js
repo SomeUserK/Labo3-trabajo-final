@@ -5,7 +5,7 @@ const _gamesUrl = new URL('https://api.rawg.io/api/games');
 // Punteros para el cache
 const _cachePointers = {
   gamesPage: (page = 1, search = '') =>
-    `games-p_${page}${search ? search : `-s_${search}`}`,
+    `games-p_${page}${search ? `-s_${search}` : ''}`,
   gameWithId: n => `game-id_${n}`,
 };
 // Tiempo de vida de cada cache en minutos
@@ -14,7 +14,7 @@ const _cacheExpireTime = {
   eachGame: 60,
 };
 
-async function _fetchGames(toSearch = '', page = 1, max = 30) {
+async function _fetchGames(toSearch = '', page = 1, max = 30, categories = []) {
   // Copio la URL para no modificar la original
   const gamesUrl = new URL(_gamesUrl);
   // Extraigo los searchParams
@@ -26,8 +26,7 @@ async function _fetchGames(toSearch = '', page = 1, max = 30) {
   searchParams.append('key', apiKey);
   searchParams.append('page', page);
   searchParams.append('page_size', max);
-  if ((searchParams.get('search') || '').trim().length > 0)
-    searchParams.append('search', toSearch);
+  if (toSearch.trim().length > 0) searchParams.append('search', toSearch);
 
   try {
     const response = await fetch(gamesUrl, {
@@ -78,7 +77,7 @@ async function _fetchOneGame(id) {
       );
     }
 
-    console.log(json);
+    // console.log(json);
     return json;
   } catch (error) {
     console.error(error);
@@ -93,7 +92,9 @@ async function _fetchOneGame(id) {
  * @param {*} max
  * @returns
  */
-export async function obtainGames(search, page, max) {
+export async function obtainGames(search, page, max, categories = []) {
+  search = (search || '').trim().toLowerCase();
+
   // Obtiene los juegos cacheados para no volver a solicitar la api
   const cachedGames = (() => {
     const now = new Date();
@@ -104,6 +105,9 @@ export async function obtainGames(search, page, max) {
      *  all: ...
      * }
      */
+
+    if (!localStorage.getItem(_cachePointers.gamesPage(page, search)))
+      return null;
 
     try {
       const cachedData = JSON.parse(

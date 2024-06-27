@@ -102,6 +102,3 @@
   height: 2rem;
   background-color: #f0f0f0;
 }
-.progress-bar[data-width] {
-  width: attr(data-width);
-}
