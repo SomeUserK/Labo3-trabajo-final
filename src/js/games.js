@@ -27,16 +27,24 @@ async function loadHTMLAsString(url) {
 }
 
 // Funcion para buscar juegos al hacer click en buscar
-btnBusqueda.addEventListener('click', async event => {
+btnBusqueda.addEventListener('click', event => {
   event.preventDefault();
+  mostrarJuego(true);
+});
 
-  const search = txtBusqueda.value;
-  const games = await obtainGames(search, 1, 20);
+async function mostrarJuego(busqueda = false) {
+  let games = [];
+  if (busqueda) {
+    const search = txtBusqueda.value;
+    console.log(search);
+    games = await obtainGames(search, 1, 20);
+  } else {
+    games = await obtainGames('', page, 20);
+  }
 
   if (!games || !games.results?.length) {
     games_container.innerHTML = HTMLreplacer(cardTemplate, {
       name: 'No games found',
-      description: 'Try searching for a game',
       image: './imagenes/no-image.png',
     });
     return;
@@ -50,11 +58,8 @@ btnBusqueda.addEventListener('click', async event => {
 
   const extraDatas = extraDataResults.map(result => result.value || null);
 
-  const cards = results.map((game, index) => {
+  results.map((game, index) => {
     if (!game) return '';
-    const gameData = extraDatas[index] || {};
-
-    const words = gameData.description?.split(' ') || [];
 
     const htmlContent = `<div class="card">
       <img src="${game.background_image}" class="card-img-top" alt="${
@@ -85,22 +90,13 @@ btnBusqueda.addEventListener('click', async event => {
   });
 
   window.scrollTo(0, 0);
-});
-
+}
 (async () => {
   window.scrollTo(0, 0);
 
   const cardTemplate = await loadHTMLAsString('./src/templates/game-card.html');
   let page = 1;
   let isLoadingState = 1;
-
-  // TODO Que la carta default sea directamente un carta vacia cargando
-  const defaultCard = HTMLreplacer(cardTemplate, {
-    name: 'No games found',
-    description: 'Try searching for a game',
-    image: './imagenes/no-image.png',
-  });
-  games_container.innerHTML = defaultCard;
 
   const firstGames = await obtainGames('', page, 20);
 
@@ -112,26 +108,38 @@ btnBusqueda.addEventListener('click', async event => {
     );
     const extraDatas = extraDataResults.map(result => result.value || null);
 
-    const cards = results.map((game, index) => {
-      // Por cada juego ...
-
+    let htmlContent = results.forEach((game, index) => {
       if (!game) return '';
       const gameData = extraDatas[index] || {};
-      if (index === 0) console.log(gameData);
 
-      const words = gameData.description?.split(' ') || [];
-      const stars_rating = Math.floor((game.rating / 5) * 100) + '%';
-
-      return HTMLreplacer(cardTemplate, {
-        name: game.name,
-        description: words.slice(0, 30).join(' ') + '...',
-        rating: game.rating,
-        stars_rating: stars_rating,
-        image: game.background_image,
-      });
+      const htmlContent = `<div class="card">
+        <img src="${game.background_image}" class="card-img-top" alt="${
+        game.name
+      }" />
+        <div class="card-body text-center">
+          <h5 class="card-title">${game.name}</h5>
+          <a href="/game-detail.html" class="btn btn-primary">View More</a>
+        </div>
+        <section class="stars">
+          <div class="star">
+            <img src="/public/imagenes/dark-stars.png" alt="stars" />
+          </div>
+          <div class="progress">
+            <div
+              class="progress-bar bg-warning"
+              role="progressbar"
+              style="width: ${Math.floor((game.rating / 5) * 100) + '%'};"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+        </section>
+      </div>
+      `;
+      games_container.innerHTML += htmlContent;
     });
 
-    games_container.innerHTML = cards.join('');
     setTimeout(() => (isLoadingState = 0), 3 * 1000);
 
     // Evento para detectar si se llegó al final de la página
@@ -175,6 +183,14 @@ btnBusqueda.addEventListener('click', async event => {
         games_container.innerHTML += newCards.join('');
       });
     });
+  } else {
+    // TODO Que la carta default sea directamente un carta vacia cargando
+    const defaultCard = HTMLreplacer(cardTemplate, {
+      name: 'No games found',
+      description: 'Try searching for a game',
+      image: './imagenes/no-image.png',
+    });
+    games_container.innerHTML = defaultCard;
   }
 
   //

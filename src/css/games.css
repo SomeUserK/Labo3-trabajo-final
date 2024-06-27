@@ -20,11 +20,11 @@
 .card {
   background-color: var(--Cian);
   color: black;
-  margin: 20px;
   font-family: Arial, Helvetica, sans-serif;
   transition: transform 0.3s ease;
   border: 1px solid var(--AzulOSCURO);
   overflow: hidden;
+  padding: 0;
 }
 
 .card:hover {

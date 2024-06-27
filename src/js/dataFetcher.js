@@ -33,14 +33,6 @@ async function _fetchGames(toSearch = '', page = 1, max = 30, genres = []) {
 
   try {
     const response = await fetch(gamesUrl, {
-      // La pagina no recibe la key de otra forma que no sea con el query
-      // method: 'POST',
-      // headers: {
-      //   'Content-Type': 'application/json',
-      // },
-      // body: {
-      //   key: apiKey,
-      // },
       method: 'GET',
     });
     const json = await response.json();
