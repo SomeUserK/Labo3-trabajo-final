@@ -11,7 +11,7 @@ export const gameCard = (game, extraGameData, genres) => `<div class="card">
           </div>
           <section class="stars text-start">
           <div class="star">
-            <img src="/public/imagenes/dark-stars.png" alt="stars" />
+            <img src="https://cdn.discordapp.com/attachments/1253096511315775595/1255957477808148531/dark-stars.png?ex=667f050d&is=667db38d&hm=2b28300e1578990302023a607bed798210a760519c0715b418e7d3a9790d6d6a&" alt="stars" />
           </div>
           <div class="d-flex justify-content-between">  
           <div class="progress">
