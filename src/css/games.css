@@ -56,9 +56,11 @@
   background-color: var(--AzulMarino);
   color: var(--Blanco);
 }
+
 .dark-mode .btn-primary {
   background-color: var(--AzulOtraVez);
   border: solid 1px var(--CelesteOscuro);
+  color: white;
 }
 
 .dark-mode .d-flex {
